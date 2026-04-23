@@ -1,38 +1,73 @@
 # Hermes Labs
 
-**Independent AI research. We study how language models fail — then build tools from what we find.**
+**AI assurance infrastructure for high-stakes systems.**
 
-[hermes-labs.ai](https://hermes-labs.ai) · [Research](https://doi.org/10.5281/zenodo.18867694) · [Substack](https://lpci.substack.com)
+Technical audit, runtime assurance, signed evidence, and EU AI Act / ISO 42001 / NIST AI RMF readiness for enterprise AI teams shipping agentic and decision-support systems.
+
+[![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
+[![Research](https://img.shields.io/badge/Zenodo-papers-1682D4)](https://doi.org/10.5281/zenodo.18867694)
+[![Substack](https://img.shields.io/badge/Substack-LPCI-FF6719?logo=substack&logoColor=white)](https://lpci.substack.com)
 
 ---
 
-## Open Source Tools
+## What Hermes is
 
-| Tool | What it does | Install |
-|------|-------------|---------|
-| [**Little Canary**](https://github.com/roli-lpci/little-canary) | Prompt injection detection via sacrificial LLM probes. 99% detection, 0% false positives on TensorTrust. | `pip install little-canary` |
-| [**lintlang**](https://github.com/roli-lpci/lintlang) | Static linter for AI agent configs, tool descriptions & system prompts. H1–H7 taxonomy. Zero LLM calls. | `pip install lintlang` |
-| [**Suy Sideguy**](https://github.com/roli-lpci/suy-sideguy) | Runtime safety guard for autonomous agents. Monitors process, file & network behavior. Enforces policy. | `pip install suy-sideguy` |
-| [**zer0dex**](https://github.com/roli-lpci/zer0dex) | Dual-layer memory for AI agents. 91% recall, 70ms, fully local. | `pip install zer0dex` |
-| [**Quick Gate**](https://github.com/roli-lpci/quick-gate-js) | Deterministic CI quality gate with bounded auto-repair. | `npm install quick-gate` |
+An independent research lab building the audit, runtime, and evidence layer for AI systems that can't afford to fail silently. We study how language models fail structurally — sycophancy, null-result bias, hermeneutic drift, intent exceptionalism — then ship tools and audits that surface those failures before production does.
+
+## Engagement tracks
+
+- **AI Assurance Audit** — pre-deployment prompt, tool, and scaffold audit; adversarial testing; written findings with prioritized fixes
+- **Runtime Assurance & Evidence** — input-side prompt-injection sensing, runtime policy enforcement, signed receipts and transcript evidence
+- **AI Compliance & Audit Readiness** — technical readiness scoring and evidence packaging mapped across EU AI Act (Annex IV), ISO/IEC 42001, and NIST AI RMF
+
+[Start a conversation →](https://hermes-labs.ai/#contact)
 
 ---
 
 ## Research
 
-- **1,500+ controlled adversarial experiments** across GPT-4o, GPT-5.2, Claude Haiku 4.5
-- **[Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694)** — LLMs discount null findings by 19.6–56.7pp across 23/24 conditions
-- **[Taxonomy of Epistemic Failure Modes](https://doi.org/10.5281/zenodo.18867695)** — 7 structural failure modes: null-result asymmetry, source-status credibility bias, agency dissolution, performative hedging, constraint evasion, silent instruction relaxation, controversy-truth conflation
-- **3 US patent filings** (provisional)
+- **[The Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694)** — 14-page report. LLMs systematically discount negative findings across matched scientific vignettes. 19.6–56.7pp probability gaps across 3 models, directionally consistent in 23 of 24 conditions.
+- **[A Taxonomy of Epistemic Failure Modes in LLMs](https://doi.org/10.5281/zenodo.19042469)** — Seven structural failure modes: null-result asymmetry, source-status credibility bias, agency dissolution, performative hedging, constraint evasion, silent instruction relaxation, controversy-truth conflation.
+
+1,500+ controlled adversarial evaluations. 3 US patent filings.
 
 ---
 
-## Services
+## Open-source contributions
 
-**AI Behavioral Audit** — Tests enterprise LLM deployments for structural reasoning failures. Twin-Environment Simulation. No production access required.
+26 PRs merged upstream. Four land in AI frameworks themselves:
 
-**Context Engineering Diagnostics** — Scans agent configurations pre-deployment. 92+ issues mapped across 12 repos.
+| Repo | PR | Fix |
+|---|---|---|
+| [langchain-ai/langchain](https://github.com/langchain-ai/langchain/pull/35544) | #35544 | Drop forced `tool_choice` when extended thinking is on |
+| [microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | #13610 | Fix truncation reducer silently deleting system prompts |
+| [pytorch/ignite](https://github.com/pytorch/ignite/pull/3591) | #3591 | Typing modernization in `tqdm_logger` |
+| [optuna/optuna](https://github.com/optuna/optuna/pull/6478) | #6478 | Simplify `Union` under `TYPE_CHECKING` |
+
+The other 22 ship with production AI stacks: React Router, Nuxt, Cloudflare Workers, Sentry, Meta jscodeshift, MobX, ngrx, Microsoft TSDoc/Griffel, and more.
 
 ---
 
-*Founded by [Rolando Bosch](https://linkedin.com/in/rolando-bosch/) · [hermes-labs.ai](https://hermes-labs.ai)*
+## Tools
+
+| Tool | What it does | Install |
+|---|---|---|
+| [**lintlang**](./lintlang) | Static linter for AI agent configs, tool descriptions, and system prompts. Zero LLM calls. | `pip install lintlang` |
+| [**little-canary**](./little-canary) | Input-side prompt injection detection via sacrificial canary-model probes. | `pip install little-canary` |
+| [**zer0dex**](./zer0dex) | Dual-layer memory for AI agents — compressed index plus vector retrieval. | `pip install zer0dex` |
+| [**claude-router**](./claude-router) | Routes prompts to the right Claude tier via local embeddings. | `pip install claude-router` |
+| [**suy-sideguy**](./suy-sideguy) | Runtime policy guard for autonomous AI agents. | `pip install suy-sideguy` |
+| [**agent-convergence-scorer**](./agent-convergence-scorer) | Score how similar N agent outputs are. | `pip install agent-convergence-scorer` |
+| [**hermes-jailbench**](./hermes-jailbench) | Jailbreak regression benchmark for LLM endpoints. | `pip install hermes-jailbench` |
+| [**repo-audit**](./repo-audit) | 15-second launch-readiness punch-list for any public GitHub repo. | `pip install repo-audit` |
+| [**rule-audit**](./rule-audit) | Static prompt audit CLI for LLM system prompts. | `pip install rule-audit` |
+| [**colony-probe**](./colony-probe) | Defensive prompt-confidentiality audit. | `pip install colony-probe` |
+| [**quick-gate-js**](./quick-gate-js) / [**quick-gate-python**](./quick-gate-python) | CI quality gate with bounded auto-repair. | `npm i quick-gate` · `pip install quick-gate-python` |
+| [**csv-quality-gate**](./csv-quality-gate) | CSV preflight validation for pipeline inputs. | `pip install csv-quality-gate` |
+| [**intent-verify**](./intent-verify) | Repo intent verification and spec drift checks. | `pip install intent-verify` |
+| [**forgetted**](./forgetted) | Mid-conversation incognito mode for AI agents. | `pip install forgetted` |
+| [**zer0lint**](./zer0lint) | Memory extraction diagnostics for `mem0` configs. | `pip install zer0lint` |
+
+---
+
+*Founded by [Rolando Bosch](https://www.linkedin.com/in/rolando-bosch/) · [rbosch@lpci.ai](mailto:rbosch@lpci.ai) · [hermes-labs.ai](https://hermes-labs.ai)*
