@@ -50,15 +50,13 @@ The rest ship with production AI stacks: React Router, Nuxt, Cloudflare Workers,
 
 ## Reliability stack (flagships)
 
-The current set, all open-source, all installable in seconds.
+Start here. These three projects have explicit, reverified release paths; the repository links are the trust surface.
 
 | Tool | What it does | Install |
 |---|---|---|
-| [**hermes-rubric**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring. Synthesize rubric, collect citations, hedge on thin evidence. | `pip install hermes-rubric` |
-| [**fidelis**](https://github.com/hermes-labs-ai/fidelis) | Zero-LLM agent memory. 73.0% end-to-end QA on LongMemEval-S, $0/query, fully local. | `pip install fidelis` |
-| [**hermes-blind**](https://github.com/hermes-labs-ai/hermes-blind) | Context-compensation scaffold for LLM evaluation prompts. Disclose, gate on evidence, hedge on thin. | `pip install hermes-blind` |
-| [**hermeneutic**](https://github.com/hermes-labs-ai/hermeneutic) | Mine corrections from chat logs; gate the next response before drift ships. | `pip install hermeneutic` |
-| [**hermes-prime**](https://github.com/hermes-labs-ai/hermes-prime) | Bootstrap a fresh Claude Code session with conventions and grounding triggers already loaded. Stop re-deriving the same rules at minute 30. | `pip install hermes-prime` |
+| [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs; gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
+| [**fidelis 0.0.91**](https://github.com/hermes-labs-ai/fidelis) | Zero-LLM agent memory that returns stored context without regenerating it. | `git clone --branch v0.0.91 --depth 1 https://github.com/hermes-labs-ai/fidelis.git` then `python3 -m pip install ./fidelis` |
+| [**hermes-rubric 1.0.0**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring. Synthesize a rubric, collect citations, and hedge on thin evidence. | `pip install hermes-rubric==1.0.0` |
 
 ## Adjacent tools
 
@@ -69,8 +67,7 @@ The current set, all open-source, all installable in seconds.
 | [**claude-router**](https://github.com/hermes-labs-ai/claude-router) | Routes prompts to the right Claude tier via local embeddings. | `pip install claude-router` |
 | [**langquant**](https://github.com/hermes-labs-ai/langquant) | Stateless LLM coherence via refreshing language scaffold (LPCI). | `pip install langquant` |
 | [**quickthink**](https://github.com/hermes-labs-ai/quickthink) | Local-first inference control layer for small LLMs. | `pip install quickthink` |
-| [**agent-gorgon**](https://github.com/hermes-labs-ai/agent-gorgon) | Stop AI agents from fabricating tool output when a registered tool exists. | `pip install agent-gorgon` |
-| [**suy-sideguy**](https://github.com/hermes-labs-ai/suy-sideguy) | Runtime policy guard for autonomous AI agents. | `pip install suy-sideguy` |
+| [**agent-gorgon 0.1.6**](https://github.com/hermes-labs-ai/agent-gorgon) | Runtime policy guard for autonomous agents: file, network, and process policy with forensic reports. | `pip install agent-gorgon==0.1.6` |
 | [**zer0dex**](https://github.com/hermes-labs-ai/zer0dex) | Dual-layer memory for AI agents (compressed index plus vector retrieval). | `pip install zer0dex` |
 | [**agent-convergence-scorer**](https://github.com/hermes-labs-ai/agent-convergence-scorer) | Score how similar N agent outputs are. | `pip install agent-convergence-scorer` |
 | [**hermes-jailbench**](https://github.com/hermes-labs-ai/hermes-jailbench) | Jailbreak regression benchmark for LLM endpoints. | `pip install hermes-jailbench` |
