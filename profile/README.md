@@ -29,7 +29,7 @@ An independent research lab building the audit, runtime, and evidence layer for 
 - **[The Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694).** 14-page report. LLMs systematically discount negative findings across matched scientific vignettes. 19.6 to 56.7pp probability gaps across 3 models, directionally consistent in 23 of 24 conditions.
 - **[A Taxonomy of Epistemic Failure Modes in LLMs](https://doi.org/10.5281/zenodo.19042469).** Seven structural failure modes: null-result asymmetry, source-status credibility bias, agency dissolution, performative hedging, constraint evasion, silent instruction relaxation, controversy-truth conflation.
 
-1,500+ controlled epistemic evaluations. 5 US patent filings (1 non-provisional pending, 4 provisional).
+Controlled evaluations across multiple models and structural epistemic failure modes. 5 US patent filings (1 non-provisional pending, 4 provisional).
 
 ---
 
@@ -57,6 +57,8 @@ Start here. These three projects have explicit, reverified release paths; the re
 | [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs; gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
 | [**fidelis 0.0.91**](https://github.com/hermes-labs-ai/fidelis) | Zero-LLM agent memory that returns stored context without regenerating it. | `git clone --branch v0.0.91 --depth 1 https://github.com/hermes-labs-ai/fidelis.git` then `python3 -m pip install ./fidelis` |
 | [**hermes-rubric 1.0.0**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring. Synthesize a rubric, collect citations, and hedge on thin evidence. | `pip install hermes-rubric==1.0.0` |
+
+> **Fidelis install warning:** The `fidelis` package on PyPI is unrelated to the Hermes Labs project. Install Hermes Labs Fidelis from the tagged source above.
 
 ## Adjacent tools
 
