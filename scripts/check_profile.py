@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -14,12 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "profile" / "README.md"
 RESEARCH_URL = "https://hermes-labs.ai/research"
 
-EXPECTED_DOIS = {
-    "10.5281/zenodo.18867694",
-    "10.5281/zenodo.19042469",
-    "10.5281/zenodo.21652317",
-    "10.5281/zenodo.21659634",
-}
+EXPECTED_PAPERS = [
+    ("The Generative Horizon", "10.5281/zenodo.21659634"),
+    ("Precise Records, Unstable Meanings", "10.5281/zenodo.21652317"),
+    ("A Taxonomy of Epistemic Failure Modes in Large Language Models", "10.5281/zenodo.19042469"),
+    ("The Asymmetric Burden of Proof", "10.5281/zenodo.18867694"),
+]
+EXPECTED_DOIS = {doi for _, doi in EXPECTED_PAPERS}
 EXPECTED_FLAGSHIPS = {
     "https://github.com/hermes-labs-ai/lintlang",
     "https://github.com/hermes-labs-ai/little-canary",
@@ -27,6 +29,10 @@ EXPECTED_FLAGSHIPS = {
     "https://github.com/hermes-labs-ai/agent-gorgon",
 }
 DOI_PATTERN = re.compile(r"10\.5281/zenodo\.\d+")
+PAPER_LINK_PATTERN = re.compile(
+    r"^- \*\*\[(?P<title>[^]]+)\]\(https://doi\.org/(?P<doi>10\.5281/zenodo\.\d+)\)\.\*\*",
+    re.MULTILINE,
+)
 
 
 def section(markdown: str, heading: str) -> str:
@@ -48,16 +54,11 @@ def check_local(markdown: str) -> list[str]:
     except ValueError as exc:
         return [str(exc)]
 
-    dois = set(DOI_PATTERN.findall(research))
-    if dois != EXPECTED_DOIS:
+    papers = [(match["title"], match["doi"]) for match in PAPER_LINK_PATTERN.finditer(research)]
+    if papers != EXPECTED_PAPERS:
         errors.append(
-            f"research DOI set differs: expected {sorted(EXPECTED_DOIS)}, got {sorted(dois)}"
+            f"visible research links differ: expected {EXPECTED_PAPERS}, got {papers}"
         )
-
-    for doi in EXPECTED_DOIS:
-        count = research.count(doi)
-        if count != 1:
-            errors.append(f"research DOI {doi} appears {count} times; expected once")
 
     flagship_urls = set(re.findall(r"https://github\.com/hermes-labs-ai/[a-z0-9-]+", flagships))
     if flagship_urls != EXPECTED_FLAGSHIPS:
@@ -92,11 +93,16 @@ def main() -> int:
     markdown = PROFILE.read_text(encoding="utf-8")
     errors = check_local(markdown)
     if args.compare_site:
-        live_dois = site_dois()
-        if live_dois != EXPECTED_DOIS:
-            errors.append(
-                f"live research DOI set differs: expected {sorted(EXPECTED_DOIS)}, got {sorted(live_dois)}"
-            )
+        try:
+            live_dois = site_dois()
+        except (OSError, UnicodeError, urllib.error.URLError) as exc:
+            errors.append(f"live research index unavailable: {exc}")
+        else:
+            if live_dois != EXPECTED_DOIS:
+                errors.append(
+                    "live research DOI set differs: "
+                    f"expected {sorted(EXPECTED_DOIS)}, got {sorted(live_dois)}"
+                )
 
     if errors:
         for error in errors:
