@@ -25,6 +25,14 @@ class ProfileTruthTests(unittest.TestCase):
         changed = self.profile.replace("The Generative Horizon", "A Different Paper", 1)
         self.assertTrue(check_local(changed))
 
+    def test_hidden_duplicate_doi_fails(self) -> None:
+        changed = self.profile.replace(
+            "## Open-source contributions",
+            "<!-- 10.5281/zenodo.21659634 -->\n\n## Open-source contributions",
+            1,
+        )
+        self.assertTrue(check_local(changed))
+
     def test_changed_flagship_set_fails(self) -> None:
         changed = self.profile.replace(
             "https://github.com/hermes-labs-ai/agent-gorgon",

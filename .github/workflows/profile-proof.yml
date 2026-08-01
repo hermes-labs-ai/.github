@@ -21,5 +21,4 @@ jobs:
           python scripts/check_profile.py
           python -m unittest discover -s tests
       - name: Compare with the live research index
-        continue-on-error: true
         run: python scripts/check_profile.py --compare-site

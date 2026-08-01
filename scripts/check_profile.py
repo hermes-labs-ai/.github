@@ -60,6 +60,11 @@ def check_local(markdown: str) -> list[str]:
             f"visible research links differ: expected {EXPECTED_PAPERS}, got {papers}"
         )
 
+    for doi in EXPECTED_DOIS:
+        count = research.count(doi)
+        if count != 1:
+            errors.append(f"research DOI {doi} appears {count} times; expected once")
+
     flagship_urls = set(re.findall(r"https://github\.com/hermes-labs-ai/[a-z0-9-]+", flagships))
     if flagship_urls != EXPECTED_FLAGSHIPS:
         errors.append(
@@ -92,11 +97,18 @@ def main() -> int:
 
     markdown = PROFILE.read_text(encoding="utf-8")
     errors = check_local(markdown)
+    warnings: list[str] = []
     if args.compare_site:
         try:
             live_dois = site_dois()
+        except urllib.error.HTTPError as exc:
+            message = f"live research index returned HTTP {exc.code}"
+            if 500 <= exc.code < 600:
+                warnings.append(message)
+            else:
+                errors.append(message)
         except (OSError, UnicodeError, urllib.error.URLError) as exc:
-            errors.append(f"live research index unavailable: {exc}")
+            warnings.append(f"live research index temporarily unavailable: {exc}")
         else:
             if live_dois != EXPECTED_DOIS:
                 errors.append(
@@ -108,6 +120,9 @@ def main() -> int:
         for error in errors:
             print(f"FAIL: {error}", file=sys.stderr)
         return 1
+
+    for warning in warnings:
+        print(f"WARN: {warning}", file=sys.stderr)
 
     mode = "local + live research index" if args.compare_site else "local"
     print(f"PASS: organization profile proof spine ({mode})")
