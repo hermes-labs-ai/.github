@@ -5,7 +5,7 @@
 We find the silent failures standard evaluations miss—dropped instructions, fabricated tool results, distorted memory, and actions no one can reconstruct—then engineer them out in the stack where they occur.
 
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
-[![Research](https://img.shields.io/badge/Zenodo-papers-1682D4)](https://doi.org/10.5281/zenodo.18867694)
+[![Research](https://img.shields.io/badge/research-four%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Substack](https://img.shields.io/badge/Substack-rolibosch-FF6719?logo=substack&logoColor=white)](https://rolibosch.substack.com)
 
 ---
@@ -25,10 +25,14 @@ Hermes Labs is an AI reliability engineering studio for product and engineering 
 
 ## Research
 
-- **[The Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694).** 14-page report. LLMs systematically discount negative findings across matched scientific vignettes. 19.6 to 56.7pp probability gaps across 3 models, directionally consistent in 23 of 24 conditions.
-- **[A Taxonomy of Epistemic Failure Modes in LLMs](https://doi.org/10.5281/zenodo.19042469).** Seven structural failure modes: null-result asymmetry, source-status credibility bias, agency dissolution, performative hedging, constraint evasion, silent instruction relaxation, controversy-truth conflation.
+The four public papers have distinct evidence roles; they do not share one
+dataset or validate one another. Read the [research index](https://hermes-labs.ai/research)
+for abstracts, hosted copies, and citation exports.
 
-Controlled evaluations across multiple models and structural epistemic failure modes. 5 US patent filings (1 non-provisional pending, 4 provisional).
+- **[The Generative Horizon](https://doi.org/10.5281/zenodo.21659634).** A conceptual paper on model self-report, recursive interpretive conditioning, and the boundary between measured representations and claims about inner states.
+- **[Precise Records, Unstable Meanings](https://doi.org/10.5281/zenodo.21652317).** A measurement-validity audit of claims derived from AI agent telemetry.
+- **[A Taxonomy of Epistemic Failure Modes in Large Language Models](https://doi.org/10.5281/zenodo.19042469).** A taxonomy of seven structural epistemic failure modes.
+- **[The Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694).** A matched-vignette study of null-result asymmetry.
 
 ---
 
