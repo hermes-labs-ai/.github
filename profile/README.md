@@ -29,6 +29,8 @@ The four public papers have distinct evidence roles; they do not share one
 dataset or validate one another. Read the [research index](https://hermes-labs.ai/research)
 for abstracts, hosted copies, and citation exports.
 
+Machine-readable publication record: [JSON](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.json) · [JSON-LD](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.jsonld) · [BibTeX](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/CITATION.bib).
+
 - **[The Generative Horizon](https://doi.org/10.5281/zenodo.21659634).** A conceptual paper on model self-report, recursive interpretive conditioning, and the boundary between measured representations and claims about inner states.
 - **[Precise Records, Unstable Meanings](https://doi.org/10.5281/zenodo.21652317).** A measurement-validity audit of claims derived from AI agent telemetry.
 - **[A Taxonomy of Epistemic Failure Modes in Large Language Models](https://doi.org/10.5281/zenodo.19042469).** A taxonomy of seven structural epistemic failure modes.
