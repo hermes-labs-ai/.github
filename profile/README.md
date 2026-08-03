@@ -62,7 +62,7 @@ production system.
 
 | Tool | What it does | Install |
 |---|---|---|
-| [**agent-kickstart 0.1.0**](https://github.com/hermes-labs-ai/agent-kickstart) | Guided, project-local first experience for Claude Code beginners, with resumable onboarding and explicit local-state controls. | [Ask Claude Code to install it](https://github.com/hermes-labs-ai/agent-kickstart#start-here) |
+| [**Claude Kickstart 0.1.0**](https://github.com/hermes-labs-ai/agent-kickstart) (`agent-kickstart` repo) | Guided, project-local first experience for Claude Code beginners, with resumable onboarding and explicit local-state controls. | [Ask Claude Code to install it](https://github.com/hermes-labs-ai/agent-kickstart#start-here) |
 | [**lintlang 0.3.1**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for AI agent configs, tool descriptions, and system prompts. Zero LLM calls. | `pip install lintlang==0.3.1` |
 | [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection via sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
 | [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs; gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
