@@ -23,6 +23,7 @@ EXPECTED_PAPERS = [
 ]
 EXPECTED_DOIS = {doi for _, doi in EXPECTED_PAPERS}
 EXPECTED_FLAGSHIPS = {
+    "https://github.com/hermes-labs-ai/agent-kickstart",
     "https://github.com/hermes-labs-ai/lintlang",
     "https://github.com/hermes-labs-ai/little-canary",
     "https://github.com/hermes-labs-ai/hermeneutic",
