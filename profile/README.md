@@ -42,10 +42,11 @@ Start here. These projects make individual parts of our approach inspectable and
 
 | Tool | Reliability role | Start |
 |---|---|---|
-| [**lintlang 0.3.1**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.1` |
+| [**lintlang 0.3.2**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.2` |
 | [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
-| [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
-| [**agent-gorgon 0.1.6**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.6` |
+| [**hermeneutic 0.1.8**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.8` |
+| [**hermes-rubric 1.0.2**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring for AI artifacts, with every dimension tied to quoted evidence. | `pip install hermes-rubric==1.0.2` |
+| [**agent-gorgon 0.1.7**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.7` |
 
 ---
 
