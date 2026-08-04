@@ -22,7 +22,7 @@ EXPECTED_PAPERS = [
     ("The Asymmetric Burden of Proof", "10.5281/zenodo.18867694"),
 ]
 EXPECTED_DOIS = {doi for _, doi in EXPECTED_PAPERS}
-EXPECTED_FLAGSHIPS = {
+EXPECTED_TOOLS = {
     "https://github.com/hermes-labs-ai/agent-kickstart",
     "https://github.com/hermes-labs-ai/lintlang",
     "https://github.com/hermes-labs-ai/little-canary",
@@ -50,8 +50,8 @@ def section(markdown: str, heading: str) -> str:
 def check_local(markdown: str) -> list[str]:
     errors: list[str] = []
     try:
-        research = section(markdown, "Research")
-        flagships = section(markdown, "Flagship software")
+        research = section(markdown, "Research behind the engineering")
+        tools = section(markdown, "Open-source reliability tools")
     except ValueError as exc:
         return [str(exc)]
 
@@ -66,11 +66,11 @@ def check_local(markdown: str) -> list[str]:
         if count != 1:
             errors.append(f"research DOI {doi} appears {count} times; expected once")
 
-    flagship_urls = set(re.findall(r"https://github\.com/hermes-labs-ai/[a-z0-9-]+", flagships))
-    if flagship_urls != EXPECTED_FLAGSHIPS:
+    tool_urls = set(re.findall(r"https://github\.com/hermes-labs-ai/[a-z0-9-]+", tools))
+    if tool_urls != EXPECTED_TOOLS:
         errors.append(
-            "flagship set differs: "
-            f"expected {sorted(EXPECTED_FLAGSHIPS)}, got {sorted(flagship_urls)}"
+            "open-source tool set differs: "
+            f"expected {sorted(EXPECTED_TOOLS)}, got {sorted(tool_urls)}"
         )
 
     badge = "[![Research](https://img.shields.io/badge/research-four%20papers-1682D4)]"

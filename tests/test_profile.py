@@ -27,13 +27,13 @@ class ProfileTruthTests(unittest.TestCase):
 
     def test_hidden_duplicate_doi_fails(self) -> None:
         changed = self.profile.replace(
-            "## Open-source contributions",
-            "<!-- 10.5281/zenodo.21659634 -->\n\n## Open-source contributions",
+            "## Upstream engineering",
+            "<!-- 10.5281/zenodo.21659634 -->\n\n## Upstream engineering",
             1,
         )
         self.assertTrue(check_local(changed))
 
-    def test_changed_flagship_set_fails(self) -> None:
+    def test_changed_tool_set_fails(self) -> None:
         changed = self.profile.replace(
             "https://github.com/hermes-labs-ai/agent-gorgon",
             "https://github.com/hermes-labs-ai/hermes-jailbench",

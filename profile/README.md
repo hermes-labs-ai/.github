@@ -2,79 +2,88 @@
 
 **AI reliability engineering for production agents and LLM applications.**
 
-We find the silent failures standard evaluations miss—dropped instructions, fabricated tool results, distorted memory, and actions no one can reconstruct—then engineer them out in the stack where they occur.
+AI systems can pass conventional evaluations and still fail in real use. Instructions get dropped. Tools appear to succeed when they did not. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
+
+Hermes Labs finds these silent failures and engineers them out in the layer where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
 
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
 [![Research](https://img.shields.io/badge/research-four%20papers-1682D4)](https://hermes-labs.ai/research)
-[![Substack](https://img.shields.io/badge/Substack-rolibosch-FF6719?logo=substack&logoColor=white)](https://rolibosch.substack.com)
+[![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
+[![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://rolibosch.substack.com)
 
 ---
 
 ## What we do
 
-Hermes Labs is an AI reliability engineering studio for product and engineering teams shipping systems whose instructions, tools, memory, and evidence must remain reliable under real use.
+Hermes Labs is an AI reliability engineering studio for product and engineering teams shipping agents and LLM applications whose behavior must remain dependable, inspectable, and reconstructable under real use.
 
-## How we help
-
-- **Diagnose.** We review prompts, tools, scaffolds, configs, memory, and traces against known failure modes, run controlled adversarial probes, and deliver prioritized findings with fixes.
-- **Harden.** We design and integrate runtime controls, anti-fabrication guards, context-integrity protections, and offline-verifiable evidence in your existing stack.
+- **Diagnose.** We review prompts, tools, scaffolds, configurations, memory, retrieval, and traces; run controlled adversarial probes; and deliver prioritized findings with reproducible failure cases and concrete fixes.
+- **Harden.** We design and integrate runtime controls, anti-fabrication safeguards, context-integrity protections, policy gates, and offline-verifiable evidence inside the stack you already operate.
 
 [Bring us a system and a symptom →](https://hermes-labs.ai/#contact)
 
 ---
 
-## Research
+## The operational layer
 
-The four public papers have distinct evidence roles; they do not share one
-dataset or validate one another. Read the [research index](https://hermes-labs.ai/research)
-for abstracts, hosted copies, and citation exports.
+**In agent systems, language is part of the runtime.**
 
-Machine-readable publication record: [JSON](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.json) · [JSON-LD](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.jsonld) · [BibTeX](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/CITATION.bib).
+System prompts, tool descriptions, retrieved context, memory, summaries, policies, and evaluation criteria do not merely describe a system. They condition what it notices, chooses, remembers, and does.
+
+We treat this operational layer as an engineering surface: something that can be inspected before deployment, tested under adversarial conditions, controlled at runtime, and verified after an action occurs.
+
+That is where systems can remain technically healthy while silently doing the wrong thing.
+
+---
+
+## Open-source reliability tools
+
+Start here. These projects make individual parts of our approach inspectable and useful on their own. Hermes Labs engagements apply, integrate, and harden these methods in production systems.
+
+| Tool | Reliability role | Start |
+|---|---|---|
+| [**Agent Kickstart**](https://github.com/hermes-labs-ai/agent-kickstart) | Guided, project-local first experience for Claude Code beginners, with resumable onboarding and explicit local-state controls. | [Ask Claude Code to install it](https://github.com/hermes-labs-ai/agent-kickstart#start-here) |
+| [**lintlang 0.3.1**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.1` |
+| [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
+| [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
+| [**agent-gorgon 0.1.6**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.6` |
+
+---
+
+## Research behind the engineering
+
+Our public research examines distinct reliability problems from empirical, measurement, and conceptual perspectives. Each paper addresses a different question and should be evaluated on its own evidence.
 
 - **[The Generative Horizon](https://doi.org/10.5281/zenodo.21659634).** A conceptual paper on model self-report, recursive interpretive conditioning, and the boundary between measured representations and claims about inner states.
 - **[Precise Records, Unstable Meanings](https://doi.org/10.5281/zenodo.21652317).** A measurement-validity audit of claims derived from AI agent telemetry.
 - **[A Taxonomy of Epistemic Failure Modes in Large Language Models](https://doi.org/10.5281/zenodo.19042469).** A taxonomy of seven structural epistemic failure modes.
 - **[The Asymmetric Burden of Proof](https://doi.org/10.5281/zenodo.18867694).** A matched-vignette study of null-result asymmetry.
 
----
+Read the [research index](https://hermes-labs.ai/research) for abstracts, hosted copies, and citation exports.
 
-## Open-source contributions
-
-26 contributions merged upstream. Two remove runtime reliability failures in agent frameworks; the others improve AI, ML, and web tooling:
-
-| Repo | PR | Fix |
-|---|---|---|
-| [langchain-ai/langchain](https://github.com/langchain-ai/langchain/pull/35544) | #35544 | Drop forced `tool_choice` when extended thinking is on |
-| [microsoft/semantic-kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | #13610 | Fix truncation reducer silently deleting system prompts |
-| [pytorch/ignite](https://github.com/pytorch/ignite/pull/3591) | #3591 | Typing modernization in `tqdm_logger` |
-| [optuna/optuna](https://github.com/optuna/optuna/pull/6478) | #6478 | Simplify `Union` under `TYPE_CHECKING` |
-
-The remaining 22 ship across React Router, Nuxt, Cloudflare Workers, Sentry, Meta jscodeshift, MobX, ngrx, Microsoft TSDoc/Griffel, and more.
+Machine-readable publication record: [JSON](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.json) · [JSON-LD](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.jsonld) · [BibTeX](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/CITATION.bib).
 
 ---
 
-## Flagship software
+## Upstream engineering
 
-Start here. These are free, open-source tools with reverified install and use
-paths. They make our methods inspectable and give teams useful building blocks;
-Hermes Labs engagements apply, integrate, and harden those methods in a
-production system.
+Hermes Labs has contributed 27 merged changes across external open-source projects. Two directly removed runtime reliability failures in major agent frameworks:
 
-| Tool | What it does | Install |
+| Project | Contribution | Reliability effect |
 |---|---|---|
-| [**Claude Kickstart 0.1.0**](https://github.com/hermes-labs-ai/agent-kickstart) (`agent-kickstart` repo) | Guided, project-local first experience for Claude Code beginners, with resumable onboarding and explicit local-state controls. | [Ask Claude Code to install it](https://github.com/hermes-labs-ai/agent-kickstart#start-here) |
-| [**lintlang 0.3.1**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for AI agent configs, tool descriptions, and system prompts. Zero LLM calls. | `pip install lintlang==0.3.1` |
-| [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection via sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
-| [**hermeneutic 0.1.7**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs; gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.7` |
-| [**agent-gorgon 0.1.6**](https://github.com/hermes-labs-ai/agent-gorgon) | Runtime policy guard for autonomous agents, with deterministic decisions and forensic evidence. | `pip install agent-gorgon==0.1.6` |
+| [LangChain](https://github.com/langchain-ai/langchain/pull/35544) | [#35544](https://github.com/langchain-ai/langchain/pull/35544) | Stop forcing `tool_choice` when extended thinking is enabled |
+| [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | [#13610](https://github.com/microsoft/semantic-kernel/pull/13610) | Prevent the truncation reducer from silently deleting system prompts |
+
+Additional merged contributions span PyTorch Ignite, Optuna, React Router, Nuxt, Cloudflare Workers, Sentry, Meta jscodeshift, MobX, ngrx, Microsoft TSDoc and Griffel, GraphQL ESLint, and more.
+
+---
 
 ## More from our stack
 
-We keep additional reference implementations and research concepts public so
-others can inspect, fork, or develop them. Public does not mean flagship or
-production-ready; browse the [full GitHub catalog](https://github.com/hermes-labs-ai)
-for each repository's own status and limits.
+We keep additional reference implementations and research concepts public so others can inspect, test, fork, and develop them.
+
+Public does not automatically mean flagship or production-ready. Browse the [full GitHub catalog](https://github.com/hermes-labs-ai) and each repository's own status, installation instructions, and limitations.
 
 ---
 
-*Founded by Roli Bosch ([Rolando Bosch](https://www.linkedin.com/in/rolando-bosch/) on LinkedIn / academic publications). [roli@hermes-labs.ai](mailto:roli@hermes-labs.ai) · [hermes-labs.ai](https://hermes-labs.ai)*
+*Hermes Labs was founded by Roli Bosch ([Rolando Bosch](https://www.linkedin.com/in/rolando-bosch/) in professional and academic work). [roli@hermes-labs.ai](mailto:roli@hermes-labs.ai) · [hermes-labs.ai](https://hermes-labs.ai)*
