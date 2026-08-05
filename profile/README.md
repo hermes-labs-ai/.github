@@ -38,15 +38,19 @@ That is where systems can remain technically healthy while silently doing the wr
 
 ## Open-source reliability tools
 
-Start here. These projects make individual parts of our approach inspectable and useful on their own. Hermes Labs engagements apply, integrate, and harden these methods in production systems.
+Start here. The active public core is nine repositories, each making one part of our approach inspectable and useful on its own. Hermes Labs engagements apply, integrate, and harden these methods in production systems. Per-tool evidence boundaries are documented on the [open-source catalog](https://hermes-labs.ai/open-source).
 
 | Tool | Reliability role | Start |
 |---|---|---|
 | [**lintlang 0.3.2**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.2` |
-| [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
 | [**hermeneutic 0.1.8**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.8` |
+| [**fidelis 0.0.91**](https://github.com/hermes-labs-ai/fidelis) | Local-first agent memory that returns your original passages verbatim, with no LLM call in the default retrieval path. | Install from tagged source; the PyPI package named `fidelis` is unrelated |
+| [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
 | [**hermes-rubric 1.0.2**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring for AI artifacts, with every dimension tied to quoted evidence. | `pip install hermes-rubric==1.0.2` |
-| [**agent-gorgon 0.1.7**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.7` |
+| [**hermes-blind 0.1.4**](https://github.com/hermes-labs-ai/hermes-blind) | Recover the original goal of a long Claude Code or Codex session from its own logs, as a compact reorientation anchor. | `pip install hermes-blind==0.1.4` |
+| [**agent-kickstart 0.2.0**](https://github.com/hermes-labs-ai/agent-kickstart) | A guided, project-local first project for Claude Code beginners. No prior coding or terminal experience required. | `pip install agent-kickstart==0.2.0` |
+| [**zer0dex**](https://github.com/hermes-labs-ai/zer0dex) | Dual-layer local memory for agents: a readable markdown index alongside vector retrieval. Reference implementation. | Read the repository before adoption |
+| [**agent-gorgon 0.1.8**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.8` |
 
 ---
 
@@ -67,7 +71,7 @@ Machine-readable publication record: [JSON](https://raw.githubusercontent.com/he
 
 ## Upstream engineering
 
-Hermes Labs has contributed 27 merged changes across external open-source projects. Two directly removed runtime reliability failures in major agent frameworks:
+Hermes Labs has contributed 32 merged changes across external open-source projects. Two directly removed runtime reliability failures in major agent frameworks:
 
 | Project | Contribution | Reliability effect |
 |---|---|---|
