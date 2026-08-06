@@ -18,11 +18,11 @@ RESEARCH_URL = "https://hermes-labs.ai/research"
 EXPECTED_PAPERS = [
     (
         "Tool Differentia: Relational Static Analysis for AI Agent Tool Descriptions",
-        "10.5281/zenodo.21817244",
+        "10.5281/zenodo.21817243",
     ),
     (
         "Behavioral Canarying for Prompt Injection: Powerless Model Probes with Explicit Coverage Semantics",
-        "10.5281/zenodo.21818565",
+        "10.5281/zenodo.21818564",
     ),
     ("The Generative Horizon", "10.5281/zenodo.21659634"),
     ("Precise Records, Unstable Meanings", "10.5281/zenodo.21652317"),
