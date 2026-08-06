@@ -16,6 +16,14 @@ PROFILE = ROOT / "profile" / "README.md"
 RESEARCH_URL = "https://hermes-labs.ai/research"
 
 EXPECTED_PAPERS = [
+    (
+        "Tool Differentia: Relational Static Analysis for AI Agent Tool Descriptions",
+        "10.5281/zenodo.21817244",
+    ),
+    (
+        "Behavioral Canarying for Prompt Injection: Powerless Model Probes with Explicit Coverage Semantics",
+        "10.5281/zenodo.21818565",
+    ),
     ("The Generative Horizon", "10.5281/zenodo.21659634"),
     ("Precise Records, Unstable Meanings", "10.5281/zenodo.21652317"),
     ("A Taxonomy of Epistemic Failure Modes in Large Language Models", "10.5281/zenodo.19042469"),
@@ -27,6 +35,11 @@ EXPECTED_TOOLS = {
     "https://github.com/hermes-labs-ai/little-canary",
     "https://github.com/hermes-labs-ai/hermeneutic",
     "https://github.com/hermes-labs-ai/agent-gorgon",
+    "https://github.com/hermes-labs-ai/fidelis",
+    "https://github.com/hermes-labs-ai/hermes-rubric",
+    "https://github.com/hermes-labs-ai/hermes-blind",
+    "https://github.com/hermes-labs-ai/agent-kickstart",
+    "https://github.com/hermes-labs-ai/zer0dex",
 }
 DOI_PATTERN = re.compile(r"10\.5281/zenodo\.\d+")
 PAPER_LINK_PATTERN = re.compile(
@@ -72,9 +85,9 @@ def check_local(markdown: str) -> list[str]:
             f"expected {sorted(EXPECTED_TOOLS)}, got {sorted(tool_urls)}"
         )
 
-    badge = "[![Research](https://img.shields.io/badge/research-four%20papers-1682D4)]"
+    badge = "[![Research](https://img.shields.io/badge/research-six%20papers-1682D4)]"
     if f"{badge}({RESEARCH_URL})" not in markdown:
-        errors.append("research badge does not describe and link to the four-paper index")
+        errors.append("research badge does not describe and link to the six-paper index")
 
     return errors
 

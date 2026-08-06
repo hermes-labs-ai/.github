@@ -7,7 +7,7 @@ AI systems can pass conventional evaluations and still fail in real use. Instruc
 Hermes Labs finds these silent failures and engineers them out in the layer where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
 
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
-[![Research](https://img.shields.io/badge/research-four%20papers-1682D4)](https://hermes-labs.ai/research)
+[![Research](https://img.shields.io/badge/research-six%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
 [![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://rolibosch.substack.com)
 
@@ -58,6 +58,8 @@ Start here. The active public core is nine repositories, each making one part of
 
 Our public research examines distinct reliability problems from empirical, measurement, and conceptual perspectives. Each paper addresses a different question and should be evaluated on its own evidence.
 
+- **[Tool Differentia: Relational Static Analysis for AI Agent Tool Descriptions](https://doi.org/10.5281/zenodo.21817244).** A bounded deterministic analysis of the distinguishing information neighboring AI-agent tool descriptions do or do not provide; it documents LintLang H1.6 and does not establish semantic distinguishability or runtime-selection correctness.
+- **[Behavioral Canarying for Prompt Injection: Powerless Model Probes with Explicit Coverage Semantics](https://doi.org/10.5281/zenodo.21818565).** A technical note on pre-execution prompt-injection sensing that separates routing disposition from evidence that inspection ran; it does not claim universal detection, formal security, or aggregate accuracy for the current release.
 - **[The Generative Horizon](https://doi.org/10.5281/zenodo.21659634).** A conceptual paper on model self-report, recursive interpretive conditioning, and the boundary between measured representations and claims about inner states.
 - **[Precise Records, Unstable Meanings](https://doi.org/10.5281/zenodo.21652317).** A measurement-validity audit of claims derived from AI agent telemetry.
 - **[A Taxonomy of Epistemic Failure Modes in Large Language Models](https://doi.org/10.5281/zenodo.19042469).** A taxonomy of seven structural epistemic failure modes.
