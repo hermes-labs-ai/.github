@@ -42,9 +42,9 @@ Start here. The active public core is nine repositories, each making one part of
 
 | Tool | Reliability role | Start |
 |---|---|---|
-| [**lintlang 0.3.2**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.2` |
+| [**lintlang 0.3.8**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.3.8` |
 | [**hermeneutic 0.1.8**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.8` |
-| [**fidelis 0.0.91**](https://github.com/hermes-labs-ai/fidelis) | Local-first agent memory that returns your original passages verbatim, with no LLM call in the default retrieval path. | Install from tagged source; the PyPI package named `fidelis` is unrelated |
+| [**fidelis 0.0.93**](https://github.com/hermes-labs-ai/fidelis) | Local-first agent memory that returns your original passages verbatim, with no LLM call in the default retrieval path. | `pip install fidelis-memory==0.0.93` — repo, import name, and CLI stay `fidelis`; the unrelated PyPI package named `fidelis` is not ours |
 | [**little-canary 0.3.3**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.3` |
 | [**hermes-rubric 1.0.2**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring for AI artifacts, with every dimension tied to quoted evidence. | `pip install hermes-rubric==1.0.2` |
 | [**hermes-blind 0.1.4**](https://github.com/hermes-labs-ai/hermes-blind) | Recover the original goal of a long Claude Code or Codex session from its own logs, as a compact reorientation anchor. | `pip install hermes-blind==0.1.4` |
