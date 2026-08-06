@@ -1,0 +1,47 @@
+name: Feature request
+description: Propose a capability or change in behavior.
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What are you trying to do that you currently cannot? Describe the situation, not the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: What should happen instead? Concrete input and output beats an abstract description.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered
+      description: Including existing tools or workarounds, and why they fall short.
+    validations:
+      required: false
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Does this fit the tool's stated scope?
+      description: >
+        Each repository documents what it deliberately does not do. Check the README's scope and
+        evidence-boundary sections before filing.
+      options:
+        - "Yes, it fits the documented scope"
+        - "It expands the scope, and I explain why above"
+        - "Not sure"
+    validations:
+      required: true
+  - type: checkboxes
+    id: claims
+    attributes:
+      label: Claims
+      options:
+        - label: >
+            This request does not depend on the tool making a safety, accuracy, or
+            production-readiness guarantee it does not currently make.
+          required: false

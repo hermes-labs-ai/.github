@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/hermes-labs-ai/.github/blob/main/SECURITY.md
+    about: Do not open a public issue. Report privately to roli@hermes-labs.ai.
+  - name: Support and routing
+    url: https://github.com/hermes-labs-ai/.github/blob/main/SUPPORT.md
+    about: Where usage questions, bugs, and commercial requests each belong.
+  - name: Open-source catalog
+    url: https://hermes-labs.ai/open-source
+    about: The active Hermes Labs open-source core, with install commands and evidence boundaries.
+  - name: Commercial reliability engineering
+    url: https://hermes-labs.ai/#contact
+    about: Technical audits, runtime hardening, and evidence work on production AI systems.

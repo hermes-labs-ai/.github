@@ -1,0 +1,56 @@
+name: Bug report
+description: Something behaves differently than documented.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not use this form for security vulnerabilities. See SECURITY.md and email
+        roli@hermes-labs.ai instead.
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Output of the tool's `--version`, or the commit SHA if installed from source.
+      placeholder: "0.3.8"
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform
+      description: OS and language runtime version.
+      placeholder: "macOS 15.3, Python 3.12.4"
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Exact command
+      description: The command you ran, verbatim.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened
+      description: Include the full output or traceback.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: >
+        The smallest input or config that triggers this. This is the single most useful thing you
+        can provide.
+    validations:
+      required: false
