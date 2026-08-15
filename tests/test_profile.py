@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import unittest
 
-from scripts.check_profile import PROFILE, check_local
+from scripts.check_profile import EXPECTED_DOIS, PROFILE, check_local, compare_site_dois
 
 
 class ProfileTruthTests(unittest.TestCase):
@@ -40,6 +40,22 @@ class ProfileTruthTests(unittest.TestCase):
             1,
         )
         self.assertTrue(check_local(changed))
+
+    def test_stale_displayed_version_fails(self) -> None:
+        changed = self.profile.replace("lintlang 0.4.1", "lintlang 0.3.8", 1)
+        self.assertTrue(check_local(changed))
+
+    def test_stale_install_pin_fails(self) -> None:
+        changed = self.profile.replace("hermes-rubric==1.1.0", "hermes-rubric==1.0.2", 1)
+        self.assertTrue(check_local(changed))
+
+    def test_live_index_allows_additional_version_dois(self) -> None:
+        self.assertEqual(compare_site_dois(EXPECTED_DOIS | {"10.5281/zenodo.99999999"}), [])
+
+    def test_live_index_missing_profile_doi_fails(self) -> None:
+        missing = set(EXPECTED_DOIS)
+        missing.pop()
+        self.assertTrue(compare_site_dois(missing))
 
 
 if __name__ == "__main__":
