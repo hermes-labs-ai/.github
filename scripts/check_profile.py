@@ -41,6 +41,16 @@ EXPECTED_TOOLS = {
     "https://github.com/hermes-labs-ai/agent-kickstart",
     "https://github.com/hermes-labs-ai/zer0dex",
 }
+EXPECTED_PINNED_TOOLS = {
+    "https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.4.1"),
+    "https://github.com/hermes-labs-ai/hermeneutic": ("hermeneutic", "0.1.8"),
+    "https://github.com/hermes-labs-ai/fidelis": ("fidelis-memory", "0.0.93"),
+    "https://github.com/hermes-labs-ai/little-canary": ("little-canary", "0.3.3"),
+    "https://github.com/hermes-labs-ai/hermes-rubric": ("hermes-rubric", "1.1.0"),
+    "https://github.com/hermes-labs-ai/hermes-blind": ("hermes-blind", "0.1.4"),
+    "https://github.com/hermes-labs-ai/agent-kickstart": ("agent-kickstart", "0.2.0"),
+    "https://github.com/hermes-labs-ai/agent-gorgon": ("agent-gorgon", "0.1.8"),
+}
 DOI_PATTERN = re.compile(r"10\.5281/zenodo\.\d+")
 PAPER_LINK_PATTERN = re.compile(
     r"^- \*\*\[(?P<title>[^]]+)\]\(https://doi\.org/(?P<doi>10\.5281/zenodo\.\d+)\)\.\*\*",
@@ -85,6 +95,18 @@ def check_local(markdown: str) -> list[str]:
             f"expected {sorted(EXPECTED_TOOLS)}, got {sorted(tool_urls)}"
         )
 
+    for tool_url, (package, version) in EXPECTED_PINNED_TOOLS.items():
+        row = next((line for line in tools.splitlines() if f"]({tool_url})" in line), None)
+        expected_display = f"**{tool_url.rsplit('/', 1)[-1]} {version}**"
+        expected_install = f"`pip install {package}=={version}`"
+        if row is None:
+            errors.append(f"missing tool row for {tool_url}")
+            continue
+        if expected_display not in row:
+            errors.append(f"{tool_url} has stale or malformed displayed version; expected {version}")
+        if expected_install not in row:
+            errors.append(f"{tool_url} has stale or malformed install command; expected {package}=={version}")
+
     badge = "[![Research](https://img.shields.io/badge/research-six%20papers-1682D4)]"
     if f"{badge}({RESEARCH_URL})" not in markdown:
         errors.append("research badge does not describe and link to the six-paper index")
@@ -97,6 +119,17 @@ def site_dois() -> set[str]:
     with urllib.request.urlopen(request, timeout=15) as response:
         body = response.read().decode("utf-8")
     return set(DOI_PATTERN.findall(body))
+
+
+def compare_site_dois(live_dois: set[str]) -> list[str]:
+    """Require every profile paper on the live index, allowing extra versions."""
+    missing = EXPECTED_DOIS - live_dois
+    if not missing:
+        return []
+    return [
+        "live research DOI set is missing profile links: "
+        f"{sorted(missing)}"
+    ]
 
 
 def main() -> int:
@@ -123,11 +156,7 @@ def main() -> int:
         except (OSError, UnicodeError, urllib.error.URLError) as exc:
             warnings.append(f"live research index temporarily unavailable: {exc}")
         else:
-            if live_dois != EXPECTED_DOIS:
-                errors.append(
-                    "live research DOI set differs: "
-                    f"expected {sorted(EXPECTED_DOIS)}, got {sorted(live_dois)}"
-                )
+            errors.extend(compare_site_dois(live_dois))
 
     if errors:
         for error in errors:
