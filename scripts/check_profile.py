@@ -96,12 +96,16 @@ def check_local(markdown: str) -> list[str]:
         )
 
     for tool_url, (package, version) in EXPECTED_PINNED_TOOLS.items():
-        row = next((line for line in tools.splitlines() if f"]({tool_url})" in line), None)
+        rows = [line for line in tools.splitlines() if f"]({tool_url})" in line]
         expected_display = f"**{tool_url.rsplit('/', 1)[-1]} {version}**"
         expected_install = f"`pip install {package}=={version}`"
-        if row is None:
+        if not rows:
             errors.append(f"missing tool row for {tool_url}")
             continue
+        if len(rows) != 1:
+            errors.append(f"{tool_url} appears {len(rows)} times; expected one row")
+            continue
+        row = rows[0]
         if expected_display not in row:
             errors.append(f"{tool_url} has stale or malformed displayed version; expected {version}")
         if expected_install not in row:
