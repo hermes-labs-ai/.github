@@ -42,7 +42,7 @@ class ProfileTruthTests(unittest.TestCase):
         self.assertTrue(check_local(changed))
 
     def test_stale_displayed_version_fails(self) -> None:
-        changed = self.profile.replace("lintlang 0.4.1", "lintlang 0.3.8", 1)
+        changed = self.profile.replace("lintlang 0.5.0", "lintlang 0.4.1", 1)
         self.assertTrue(check_local(changed))
 
     def test_stale_install_pin_fails(self) -> None:
@@ -55,8 +55,8 @@ class ProfileTruthTests(unittest.TestCase):
             for line in self.profile.splitlines()
             if "](https://github.com/hermes-labs-ai/lintlang)" in line
         )
-        duplicate = row.replace("lintlang 0.4.1", "lintlang 0.3.8").replace(
-            "lintlang==0.4.1", "lintlang==0.3.8"
+        duplicate = row.replace("lintlang 0.5.0", "lintlang 0.4.1").replace(
+            "lintlang==0.5.0", "lintlang==0.4.1"
         )
         changed = self.profile.replace(row, f"{row}\n{duplicate}", 1)
 

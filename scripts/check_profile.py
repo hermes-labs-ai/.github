@@ -42,7 +42,7 @@ EXPECTED_TOOLS = {
     "https://github.com/hermes-labs-ai/zer0dex",
 }
 EXPECTED_PINNED_TOOLS = {
-    "https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.4.1"),
+    "https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.5.0"),
     "https://github.com/hermes-labs-ai/hermeneutic": ("hermeneutic", "0.1.9"),
     "https://github.com/hermes-labs-ai/fidelis": ("fidelis-memory", "0.0.93"),
     "https://github.com/hermes-labs-ai/little-canary": ("little-canary", "0.3.4"),
