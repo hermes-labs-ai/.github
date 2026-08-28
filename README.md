@@ -7,6 +7,7 @@ defaults for the organization, and the checks that keep its open-source tool and
 aligned with their public sources.
 
 - **Org profile (the public landing page):** [`profile/README.md`](./profile/README.md)
+- **Phone cloud work menu:** [`CLOUD.md`](./CLOUD.md)
 - **Hermes Labs** is an AI reliability engineering studio for product and engineering teams
   shipping production agents and LLM applications.
 
