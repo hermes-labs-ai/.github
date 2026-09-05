@@ -77,8 +77,8 @@ Hermes Labs has contributed 33 merged changes across external open-source projec
 
 | Project | Contribution | Reliability effect |
 |---|---|---|
-| [LangChain](https://github.com/langchain-ai/langchain/pull/35544) | [#35544](https://github.com/langchain-ai/langchain/pull/35544) | Stop forcing `tool_choice` when extended thinking is enabled |
-| [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | [#13610](https://github.com/microsoft/semantic-kernel/pull/13610) | Prevent the truncation reducer from silently deleting system prompts |
+| [LangChain](https://github.com/langchain-ai/langchain/pull/35544) | [#35544](https://github.com/langchain-ai/langchain/pull/35544) ([langchain-anthropic==1.3.5](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.3.5)) | Stop forcing `tool_choice` when extended thinking is enabled |
+| [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | [#13610](https://github.com/microsoft/semantic-kernel/pull/13610) ([python-1.41.1](https://github.com/microsoft/semantic-kernel/releases/tag/python-1.41.1)) | Prevent the truncation reducer from silently deleting system prompts |
 
 Additional merged contributions span PyTorch Ignite, Optuna, React Router, Nuxt, Cloudflare Workers, Sentry, Meta jscodeshift, MobX, ngrx, Microsoft TSDoc and Griffel, GraphQL ESLint, and more.
 
