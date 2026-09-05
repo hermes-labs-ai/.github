@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 import urllib.error
@@ -14,6 +15,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "profile" / "README.md"
 RESEARCH_URL = "https://hermes-labs.ai/research"
+PYPI_URL_TEMPLATE = "https://pypi.org/pypi/{package}/json"
 
 EXPECTED_PAPERS = [
     (
@@ -136,12 +138,60 @@ def compare_site_dois(live_dois: set[str]) -> list[str]:
     ]
 
 
+def pypi_latest_version(package: str, timeout: int = 15) -> str:
+    request = urllib.request.Request(
+        PYPI_URL_TEMPLATE.format(package=package),
+        headers={"User-Agent": "hermes-profile-check/1"},
+    )
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+        body = json.loads(response.read().decode("utf-8"))
+    return body["info"]["version"]
+
+
+def check_pypi_currentness(
+    pinned: dict[str, tuple[str, str]] = EXPECTED_PINNED_TOOLS,
+) -> tuple[list[str], list[str]]:
+    """Compare each pinned package/version against the live PyPI release.
+
+    Returns (errors, warnings). A confirmed version mismatch is an error
+    (fail closed: the profile is stale and must be corrected). A registry or
+    network failure is a warning, not an error, since it means currentness
+    could not be verified this run rather than that a pin is confirmed stale.
+    """
+    errors: list[str] = []
+    warnings: list[str] = []
+    for tool_url, (package, version) in sorted(pinned.items()):
+        try:
+            latest = pypi_latest_version(package)
+        except urllib.error.HTTPError as exc:
+            message = f"{package}: PyPI registry returned HTTP {exc.code}"
+            if 500 <= exc.code < 600:
+                warnings.append(message)
+            else:
+                warnings.append(f"{message} (registry lookup failed, not a confirmed stale pin)")
+        except (OSError, UnicodeError, urllib.error.URLError, TimeoutError) as exc:
+            warnings.append(f"{package}: PyPI registry temporarily unavailable: {exc}")
+        except (KeyError, ValueError) as exc:
+            warnings.append(f"{package}: unexpected PyPI response, could not read version: {exc}")
+        else:
+            if latest != version:
+                errors.append(
+                    f"{tool_url} pins {package}=={version} but PyPI latest is {latest}"
+                )
+    return errors, warnings
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--compare-site",
         action="store_true",
         help="also compare the profile DOI set with the live Hermes research index",
+    )
+    parser.add_argument(
+        "--check-pypi-currentness",
+        action="store_true",
+        help="also compare pinned tool versions with the live PyPI registry",
     )
     args = parser.parse_args()
 
@@ -162,6 +212,11 @@ def main() -> int:
         else:
             errors.extend(compare_site_dois(live_dois))
 
+    if args.check_pypi_currentness:
+        pypi_errors, pypi_warnings = check_pypi_currentness()
+        errors.extend(pypi_errors)
+        warnings.extend(pypi_warnings)
+
     if errors:
         for error in errors:
             print(f"FAIL: {error}", file=sys.stderr)
@@ -170,8 +225,12 @@ def main() -> int:
     for warning in warnings:
         print(f"WARN: {warning}", file=sys.stderr)
 
-    mode = "local + live research index" if args.compare_site else "local"
-    print(f"PASS: organization profile proof spine ({mode})")
+    modes = ["local"]
+    if args.compare_site:
+        modes.append("live research index")
+    if args.check_pypi_currentness:
+        modes.append("live PyPI currentness")
+    print(f"PASS: organization profile proof spine ({' + '.join(modes)})")
     return 0
 
 

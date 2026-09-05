@@ -1,8 +1,17 @@
 from __future__ import annotations
 
 import unittest
+import urllib.error
+from email.message import Message
+from unittest.mock import patch
 
-from scripts.check_profile import EXPECTED_DOIS, PROFILE, check_local, compare_site_dois
+from scripts.check_profile import (
+    EXPECTED_DOIS,
+    PROFILE,
+    check_local,
+    check_pypi_currentness,
+    compare_site_dois,
+)
 
 
 class ProfileTruthTests(unittest.TestCase):
@@ -73,6 +82,68 @@ class ProfileTruthTests(unittest.TestCase):
         missing.pop()
         self.assertTrue(compare_site_dois(missing))
 
+
+class PypiCurrentnessTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.pinned = {"https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.5.3")}
+
+    def test_matching_version_passes(self) -> None:
+        with patch("scripts.check_profile.pypi_latest_version", return_value="0.5.3"):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(errors, [])
+        self.assertEqual(warnings, [])
+
+    def test_stale_pin_fails_closed(self) -> None:
+        with patch("scripts.check_profile.pypi_latest_version", return_value="0.6.0"):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(warnings, [])
+        self.assertEqual(len(errors), 1)
+        self.assertIn("lintlang==0.5.3", errors[0])
+        self.assertIn("PyPI latest is 0.6.0", errors[0])
+
+    def test_registry_5xx_is_a_warning_not_a_stale_pin_error(self) -> None:
+        http_error = urllib.error.HTTPError(
+            url="https://pypi.org/pypi/lintlang/json",
+            code=503,
+            msg="Service Unavailable",
+            hdrs=Message(),
+            fp=None,
+        )
+        with patch("scripts.check_profile.pypi_latest_version", side_effect=http_error):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(errors, [])
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("HTTP 503", warnings[0])
+
+    def test_registry_404_is_a_warning_not_a_stale_pin_error(self) -> None:
+        http_error = urllib.error.HTTPError(
+            url="https://pypi.org/pypi/lintlang/json",
+            code=404,
+            msg="Not Found",
+            hdrs=Message(),
+            fp=None,
+        )
+        with patch("scripts.check_profile.pypi_latest_version", side_effect=http_error):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(errors, [])
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("not a confirmed stale pin", warnings[0])
+
+    def test_network_failure_is_a_warning_not_a_stale_pin_error(self) -> None:
+        with patch(
+            "scripts.check_profile.pypi_latest_version",
+            side_effect=urllib.error.URLError("temporary failure in name resolution"),
+        ):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(errors, [])
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("temporarily unavailable", warnings[0])
+
+    def test_malformed_registry_response_is_a_warning(self) -> None:
+        with patch("scripts.check_profile.pypi_latest_version", side_effect=KeyError("info")):
+            errors, warnings = check_pypi_currentness(self.pinned)
+        self.assertEqual(errors, [])
+        self.assertEqual(len(warnings), 1)
 
 if __name__ == "__main__":
     unittest.main()
