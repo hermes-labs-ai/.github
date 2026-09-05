@@ -50,7 +50,7 @@ Start here. The active public core is nine repositories, each making one part of
 | [**hermes-blind 0.1.5**](https://github.com/hermes-labs-ai/hermes-blind) | Recover the original goal of a long Claude Code or Codex session from its own logs, as a compact reorientation anchor. | `pip install hermes-blind==0.1.5` |
 | [**agent-kickstart 0.2.0**](https://github.com/hermes-labs-ai/agent-kickstart) | A guided, project-local first project for Claude Code beginners. No prior coding or terminal experience required. | `pip install agent-kickstart==0.2.0` |
 | [**zer0dex**](https://github.com/hermes-labs-ai/zer0dex) | Dual-layer local memory for agents: a readable markdown index alongside vector retrieval. Reference implementation. | Read the repository before adoption |
-| [**agent-gorgon 0.1.8**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.1.8` |
+| [**agent-gorgon 0.2.0**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.2.0` |
 
 ---
 
