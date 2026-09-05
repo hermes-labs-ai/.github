@@ -51,7 +51,7 @@ EXPECTED_PINNED_TOOLS = {
     "https://github.com/hermes-labs-ai/hermes-rubric": ("hermes-rubric", "1.2.1"),
     "https://github.com/hermes-labs-ai/hermes-blind": ("hermes-blind", "0.1.5"),
     "https://github.com/hermes-labs-ai/agent-kickstart": ("agent-kickstart", "0.2.0"),
-    "https://github.com/hermes-labs-ai/agent-gorgon": ("agent-gorgon", "0.1.8"),
+    "https://github.com/hermes-labs-ai/agent-gorgon": ("agent-gorgon", "0.2.0"),
 }
 DOI_PATTERN = re.compile(r"10\.5281/zenodo\.\d+")
 PAPER_LINK_PATTERN = re.compile(
