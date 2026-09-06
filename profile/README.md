@@ -73,14 +73,20 @@ Machine-readable publication record: [JSON](https://raw.githubusercontent.com/he
 
 ## Upstream engineering
 
-Hermes Labs has contributed 33 merged changes across external open-source projects. Two directly removed runtime reliability failures in major agent frameworks:
+<!-- hermes-contributions:start -->
+The [canonical external contribution record](https://hermes-labs.ai/open-source/contributions) reports current, dated totals and separates merged engineering work, submitted fixes, integrations, documentation, ecosystem listings and research-index submissions. [Structured ledger](https://hermes-labs.ai/contributions.json).
 
-| Project | Contribution | Reliability effect |
-|---|---|---|
-| [LangChain](https://github.com/langchain-ai/langchain/pull/35544) | [#35544](https://github.com/langchain-ai/langchain/pull/35544) ([langchain-anthropic==1.3.5](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.3.5)) | Stop forcing `tool_choice` when extended thinking is enabled |
-| [Microsoft Semantic Kernel](https://github.com/microsoft/semantic-kernel/pull/13610) | [#13610](https://github.com/microsoft/semantic-kernel/pull/13610) ([python-1.41.1](https://github.com/microsoft/semantic-kernel/releases/tag/python-1.41.1)) | Prevent the truncation reducer from silently deleting system prompts |
+Merged AI/framework fixes contributed by Roli Bosch (roli-lpci), founder of Hermes Labs:
 
-Additional merged contributions span PyTorch Ignite, Optuna, React Router, Nuxt, Cloudflare Workers, Sentry, Meta jscodeshift, MobX, ngrx, Microsoft TSDoc and Griffel, GraphQL ESLint, and more.
+- [microsoft/semantic-kernel #13610](https://github.com/microsoft/semantic-kernel/pull/13610) — Preserve the first system/developer message during Python chat-history truncation and handle the target_count=1 boundary. [Case study](https://hermes-labs.ai/case-studies/fixing-semantic-kernel-deleted-system-prompts).
+- [langchain-ai/langchain #35544](https://github.com/langchain-ai/langchain/pull/35544) — Drop forced tool_choice with a warning when Anthropic extended thinking is enabled; preserve auto and unaffected requests. [Case study](https://hermes-labs.ai/case-studies/fixing-langchain-thinking-tools-crash).
+- [microsoft/semantic-kernel #13635](https://github.com/microsoft/semantic-kernel/pull/13635) — Use value equality to avoid duplicate null entries in strict JSON Schema type arrays, with three regression tests. [Case study](https://hermes-labs.ai/case-studies/fixing-semantic-kernel-duplicate-null-schema).
+- [stanfordnlp/dspy #9978](https://github.com/stanfordnlp/dspy/pull/9978) — Reject an empty Evaluate devset with a descriptive ValueError before metric-summary division, with a regression test. [Case study](https://hermes-labs.ai/case-studies/fixing-dspy-empty-devset).
+
+[Mem0 #5250](https://github.com/mem0ai/mem0/pull/5250) contributed a Redis cosine-distance-to-similarity patch with regression coverage. It closed without merge after a maintainer acknowledged the conversion in a broader sweep. The [case study](https://hermes-labs.ai/case-studies/auditing-mem0-retrieval-scoring) preserves earlier community provenance and the patch’s missing clamp. Other substantive unmerged fixes remain visible in the ledger.
+
+Typing modernization in PyTorch Ignite and Optuna, compatibility work and dependency maintenance remain credited in their own classes. Community-list and research-index submissions do not count as merged code contributions.
+<!-- hermes-contributions:end -->
 
 ---
 
