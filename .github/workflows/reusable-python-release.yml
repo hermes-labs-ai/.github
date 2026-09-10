@@ -4,7 +4,7 @@ on:
   workflow_call:
     inputs:
       release-tag:
-        description: V-prefixed tag to build and publish.
+        description: V-prefixed tag to build and publish; must be the tag that triggered the run (pass github.ref_name).
         required: true
         type: string
       python-version:
@@ -24,11 +24,44 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Require the triggering release tag
+        env:
+          RELEASE_TAG: ${{ inputs.release-tag }}
+          TRIGGER_REF: ${{ github.ref }}
+        run: |
+          if [[ ! "$RELEASE_TAG" =~ ^v[0-9][0-9A-Za-z.+-]*$ ]]; then
+            echo "::error title=Release tag contract::release-tag '$RELEASE_TAG' is not a v-prefixed version tag."
+            exit 1
+          fi
+          if [ "$TRIGGER_REF" != "refs/tags/$RELEASE_TAG" ]; then
+            echo "::error title=Release tag contract::run was triggered by '$TRIGGER_REF', not 'refs/tags/$RELEASE_TAG'. Call this workflow from the release tag push and pass github.ref_name as release-tag."
+            exit 1
+          fi
+
       - name: Check out release tag
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.release-tag }}
+          # Fully qualified so a branch with the same name can never be checked out instead.
+          ref: refs/tags/${{ inputs.release-tag }}
           persist-credentials: false
+
+      - name: Verify exact release tag checkout
+        env:
+          RELEASE_TAG: ${{ inputs.release-tag }}
+          TRIGGER_SHA: ${{ github.sha }}
+        run: |
+          head_commit="$(git rev-parse HEAD)"
+          tag_object="$(git rev-parse "refs/tags/$RELEASE_TAG")"
+          tag_commit="$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")"
+          if [ "$head_commit" != "$tag_commit" ]; then
+            echo "::error title=Release tag contract::checked out $head_commit, but $RELEASE_TAG points to $tag_commit."
+            exit 1
+          fi
+          if [ "$TRIGGER_SHA" != "$tag_commit" ] && [ "$TRIGGER_SHA" != "$tag_object" ]; then
+            echo "::error title=Release tag contract::$RELEASE_TAG now points to $tag_commit, but the run was triggered at $TRIGGER_SHA. The tag moved after the trigger; refusing to build."
+            exit 1
+          fi
+          echo "Building $RELEASE_TAG at $head_commit."
 
       - name: Set up Python
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
