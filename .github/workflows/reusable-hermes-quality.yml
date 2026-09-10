@@ -1,0 +1,40 @@
+name: Reusable Hermes quality rail
+
+on:
+  workflow_call:
+    inputs:
+      install-command:
+        description: Shell command that installs the project and its declared gate tools.
+        required: true
+        type: string
+      python-version:
+        description: Python version to set up before installing.
+        required: false
+        type: string
+        default: "3.12"
+      gate-runner:
+        description: Path to the repository's Hermes gate runner script.
+        required: false
+        type: string
+        default: .hermes/hermes_gate_runner.py
+
+permissions:
+  contents: read
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install project and declared gate tools
+        run: ${{ inputs.install-command }}
+
+      - name: Run declared full gate
+        run: python3 ${{ inputs.gate-runner }} full
