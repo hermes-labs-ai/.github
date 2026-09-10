@@ -30,7 +30,9 @@ version of the file.
   [`.github/workflows/reusable-lintlang.yml`](./.github/workflows/reusable-lintlang.yml), and
   [`.github/workflows/reusable-python-release.yml`](./.github/workflows/reusable-python-release.yml) —
   `workflow_call` targets a repository can call with
-  `uses: hermes-labs-ai/.github/.github/workflows/<file>.yml@main`
+  `uses: hermes-labs-ai/.github/.github/workflows/<file>.yml@main`. The Python release workflow
+  must run from the release tag push with `release-tag: ${{ github.ref_name }}`; it checks out
+  `refs/tags/<tag>` and fails unless that tag still points at the triggering `github.sha`.
 
 ## Links
 
