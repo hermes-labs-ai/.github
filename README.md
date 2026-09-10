@@ -24,6 +24,13 @@ version of the file.
 - [`SUPPORT.md`](./SUPPORT.md) — where questions, bugs, and commercial requests go
 - [`.github/ISSUE_TEMPLATE/`](./.github/ISSUE_TEMPLATE) — bug and feature forms
 - [`.github/PULL_REQUEST_TEMPLATE.md`](./.github/PULL_REQUEST_TEMPLATE.md)
+- [`.github/copilot-instructions.md`](./.github/copilot-instructions.md) — default Copilot custom
+  instructions; copy into a repository only if it needs one, not auto-inherited by GitHub
+- [`.github/workflows/reusable-hermes-quality.yml`](./.github/workflows/reusable-hermes-quality.yml),
+  [`.github/workflows/reusable-lintlang.yml`](./.github/workflows/reusable-lintlang.yml), and
+  [`.github/workflows/reusable-python-release.yml`](./.github/workflows/reusable-python-release.yml) —
+  `workflow_call` targets a repository can call with
+  `uses: hermes-labs-ai/.github/.github/workflows/<file>.yml@main`
 
 ## Links
 

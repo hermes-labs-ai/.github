@@ -1,0 +1,75 @@
+name: Reusable Python package release
+
+on:
+  workflow_call:
+    inputs:
+      release-tag:
+        description: V-prefixed tag to build and publish.
+        required: true
+        type: string
+      python-version:
+        description: Python version used to build the distributions.
+        required: false
+        type: string
+        default: "3.12"
+      package-url:
+        description: Public PyPI project URL shown on the protected environment.
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release tag
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.release-tag }}
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Build and validate distributions
+        env:
+          RELEASE_TAG: ${{ inputs.release-tag }}
+        run: |
+          package_version="$(python -c 'import tomllib; print(tomllib.load(open("pyproject.toml", "rb"))["project"]["version"])')"
+          test "$RELEASE_TAG" = "v$package_version"
+          python -m pip install --upgrade build twine
+          python -m build
+          python -m twine check dist/*
+
+      - name: Preserve validated distributions
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: python-package-distributions
+          path: dist/
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pypi-${{ github.repository }}
+      cancel-in-progress: false
+    environment:
+      name: pypi
+      url: ${{ inputs.package-url }}
+    permissions:
+      id-token: write
+    steps:
+      - name: Retrieve validated distributions
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      - name: Publish to PyPI with trusted publishing
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33 # v1.14.2
