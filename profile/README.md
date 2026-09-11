@@ -9,7 +9,7 @@ Hermes Labs finds these silent failures and engineers them out in the layer wher
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
 [![Research](https://img.shields.io/badge/research-six%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
-[![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://rolibosch.substack.com)
+[![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://hermeslabs.substack.com)
 
 ---
 
@@ -45,10 +45,10 @@ Start here. The active public core is nine repositories, each making one part of
 | [**lintlang 0.5.3**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.5.3` |
 | [**hermeneutic 0.1.12**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.12` |
 | [**fidelis 0.0.95**](https://github.com/hermes-labs-ai/fidelis) | Local-first agent memory that returns your original passages verbatim, with no LLM call in the default retrieval path. | `pip install fidelis-memory==0.0.95` — repo, import name, and CLI stay `fidelis`; the unrelated PyPI package named `fidelis` is not ours |
-| [**little-canary 0.3.5**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.5` |
+| [**little-canary 0.3.6**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.6` |
 | [**hermes-rubric 1.2.1**](https://github.com/hermes-labs-ai/hermes-rubric) | Evidence-first structured scoring for AI artifacts, with every dimension tied to quoted evidence. | `pip install hermes-rubric==1.2.1` |
-| [**hermes-blind 0.1.5**](https://github.com/hermes-labs-ai/hermes-blind) | Recover the original goal of a long Claude Code or Codex session from its own logs, as a compact reorientation anchor. | `pip install hermes-blind==0.1.5` |
-| [**agent-kickstart 0.2.0**](https://github.com/hermes-labs-ai/agent-kickstart) | A guided, project-local first project for Claude Code beginners. No prior coding or terminal experience required. | `pip install agent-kickstart==0.2.0` |
+| [**hermes-blind 0.2.0**](https://github.com/hermes-labs-ai/hermes-blind) | Recover the original goal of a long Claude Code or Codex session from its own logs, as a compact reorientation anchor. | `pip install hermes-blind==0.2.0` |
+| [**agent-kickstart 0.3.0**](https://github.com/hermes-labs-ai/agent-kickstart) | A guided, project-local first project for Claude Code beginners. No prior coding or terminal experience required. | `pip install agent-kickstart==0.3.0` |
 | [**zer0dex**](https://github.com/hermes-labs-ai/zer0dex) | Dual-layer local memory for agents: a readable markdown index alongside vector retrieval. Reference implementation. | Read the repository before adoption |
 | [**agent-gorgon 0.2.0**](https://github.com/hermes-labs-ai/agent-gorgon) | Deterministic runtime policy decisions for autonomous agents, with forensic evidence for later review. | `pip install agent-gorgon==0.2.0` |
 
