@@ -1,15 +1,17 @@
 # Hermes Labs
 
-**AI reliability engineering for production agents and LLM applications.**
+**AI reliability engineering for product and engineering teams shipping production agents and LLM applications.**
 
-AI systems can pass conventional evaluations and still fail in real use. Instructions get dropped. Tools appear to succeed when they did not. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
+These systems can pass conventional evaluations and still fail silently in production. Instructions get dropped. Tools report success they did not achieve. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
 
-Hermes Labs finds these silent failures and engineers them out in the layer where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
+Hermes Labs provides engineering services to diagnose these failures and harden the operational layers where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
 
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
 [![Research](https://img.shields.io/badge/research-six%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
 [![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://hermeslabs.substack.com)
+
+**[Try an agent-instruction check](https://hermes-labs.ai/lintlang)** · **[See the engineering evidence](https://hermes-labs.ai/proof)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
 
 ---
 
