@@ -44,7 +44,7 @@ Start here. The active public core is nine repositories, each making one part of
 
 | Tool | Reliability role | Start |
 |---|---|---|
-| [**lintlang 0.5.3**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.5.3` |
+| [**lintlang 0.6.0**](https://github.com/hermes-labs-ai/lintlang) | Static analysis for agent configurations, tool descriptions, and system prompts. Zero LLM calls. [Used in Character AI's Larch CI](https://github.com/character-ai/larch/blob/main/docs/linting.md). | `pip install lintlang==0.6.0` |
 | [**hermeneutic 0.1.12**](https://github.com/hermes-labs-ai/hermeneutic) | Mine correction triples from chat logs and gate the next response before the same drift ships twice. | `pip install hermeneutic==0.1.12` |
 | [**fidelis 0.0.95**](https://github.com/hermes-labs-ai/fidelis) | Local-first agent memory that returns your original passages verbatim, with no LLM call in the default retrieval path. | `pip install fidelis-memory==0.0.95` — repo, import name, and CLI stay `fidelis`; the unrelated PyPI package named `fidelis` is not ours |
 | [**little-canary 0.3.6**](https://github.com/hermes-labs-ai/little-canary) | Input-side prompt-injection detection through sacrificial canary-model probes. | `pip install little-canary==0.3.6` |
