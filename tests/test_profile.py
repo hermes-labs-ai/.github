@@ -55,7 +55,7 @@ class ProfileTruthTests(unittest.TestCase):
         self.assertTrue(check_local(changed))
 
     def test_stale_install_pin_fails(self) -> None:
-        changed = self.profile.replace("hermes-rubric==1.2.1", "hermes-rubric==1.0.2", 1)
+        changed = self.profile.replace("hermes-rubric==1.2.2", "hermes-rubric==1.0.2", 1)
         self.assertTrue(check_local(changed))
 
     def test_duplicate_tool_row_fails(self) -> None:

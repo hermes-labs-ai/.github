@@ -46,10 +46,10 @@ EXPECTED_TOOLS = {
 EXPECTED_PINNED_TOOLS = {
     "https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.6.0"),
     "https://github.com/hermes-labs-ai/hermeneutic": ("hermeneutic", "0.1.12"),
-    "https://github.com/hermes-labs-ai/fidelis": ("fidelis-memory", "0.0.95"),
+    "https://github.com/hermes-labs-ai/fidelis": ("fidelis-memory", "0.1.0"),
     "https://github.com/hermes-labs-ai/little-canary": ("little-canary", "0.3.6"),
-    "https://github.com/hermes-labs-ai/hermes-rubric": ("hermes-rubric", "1.2.1"),
-    "https://github.com/hermes-labs-ai/hermes-blind": ("hermes-blind", "0.2.0"),
+    "https://github.com/hermes-labs-ai/hermes-rubric": ("hermes-rubric", "1.2.2"),
+    "https://github.com/hermes-labs-ai/hermes-blind": ("hermes-blind", "0.3.0"),
     "https://github.com/hermes-labs-ai/agent-kickstart": ("agent-kickstart", "0.3.0"),
     "https://github.com/hermes-labs-ai/agent-gorgon": ("agent-gorgon", "0.3.0"),
 }
