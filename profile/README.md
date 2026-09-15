@@ -90,6 +90,8 @@ Merged AI/framework fixes contributed by Roli Bosch (roli-lpci), founder of Herm
 Typing modernization in PyTorch Ignite and Optuna, compatibility work and dependency maintenance remain credited in their own classes. Community-list and research-index submissions do not count as merged code contributions.
 <!-- hermes-contributions:end -->
 
+This work may be executed through human-directed autonomous engineering infrastructure. [Rolando Bosch](https://github.com/roli-lpci) is the responsible human contributor and authorizes publication from his GitHub account.
+
 ---
 
 ## More from our stack
