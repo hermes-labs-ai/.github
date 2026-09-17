@@ -5,13 +5,7 @@ import urllib.error
 from email.message import Message
 from unittest.mock import patch
 
-from scripts.check_profile import (
-    EXPECTED_DOIS,
-    PROFILE,
-    check_local,
-    check_pypi_currentness,
-    compare_site_dois,
-)
+from scripts.check_profile import EXPECTED_DOIS, PROFILE, check_local, check_pypi_currentness, compare_site_dois
 
 
 class ProfileTruthTests(unittest.TestCase):
@@ -42,59 +36,13 @@ class ProfileTruthTests(unittest.TestCase):
         )
         self.assertTrue(check_local(changed))
 
-    def test_changed_tool_set_fails(self) -> None:
-        changed = self.profile.replace(
-            "https://github.com/hermes-labs-ai/agent-gorgon",
-            "https://github.com/hermes-labs-ai/hermes-jailbench",
-            1,
-        )
-        self.assertTrue(check_local(changed))
-
-    def test_stale_displayed_version_fails(self) -> None:
-        changed = self.profile.replace("lintlang 0.6.0", "lintlang 0.4.1", 1)
-        self.assertTrue(check_local(changed))
-
-    def test_stale_install_pin_fails(self) -> None:
-        changed = self.profile.replace("hermes-rubric==1.2.3", "hermes-rubric==1.0.2", 1)
-        self.assertTrue(check_local(changed))
-
-    def test_front_matter_keeps_canonical_catalog_and_bluesky_links(self) -> None:
+    def test_front_matter_keeps_canonical_catalog_link(self) -> None:
         changed = self.profile.replace(
             "**[Browse the open-source catalog](https://hermes-labs.ai/open-source)**",
             "Browse the tools",
             1,
         )
         self.assertTrue(check_local(changed))
-        changed = self.profile.replace(
-            "https://bsky.app/profile/hermeslabsai.bsky.social",
-            "https://bsky.app/profile/not-hermes-labs",
-            1,
-        )
-        self.assertTrue(check_local(changed))
-
-    def test_tool_section_distinguishes_core_from_full_catalog(self) -> None:
-        changed = self.profile.replace(
-            "The nine repositories below are the active public core",
-            "The repositories below are the active public core",
-            1,
-        )
-        self.assertTrue(check_local(changed))
-
-    def test_duplicate_tool_row_fails(self) -> None:
-        row = next(
-            line
-            for line in self.profile.splitlines()
-            if "](https://github.com/hermes-labs-ai/lintlang)" in line
-        )
-        duplicate = row.replace("lintlang 0.6.0", "lintlang 0.4.1").replace(
-            "lintlang==0.6.0", "lintlang==0.4.1"
-        )
-        changed = self.profile.replace(row, f"{row}\n{duplicate}", 1)
-
-        self.assertIn(
-            "https://github.com/hermes-labs-ai/lintlang appears 2 times; expected one row",
-            check_local(changed),
-        )
 
     def test_live_index_allows_additional_version_dois(self) -> None:
         self.assertEqual(compare_site_dois(EXPECTED_DOIS | {"10.5281/zenodo.99999999"}), [])

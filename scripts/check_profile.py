@@ -16,7 +16,6 @@ ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "profile" / "README.md"
 RESEARCH_URL = "https://hermes-labs.ai/research"
 CATALOG_URL = "https://hermes-labs.ai/open-source"
-BLUESKY_URL = "https://bsky.app/profile/hermeslabsai.bsky.social"
 PYPI_URL_TEMPLATE = "https://pypi.org/pypi/{package}/json"
 
 EXPECTED_PAPERS = [
@@ -34,27 +33,6 @@ EXPECTED_PAPERS = [
     ("The Asymmetric Burden of Proof", "10.5281/zenodo.18867694"),
 ]
 EXPECTED_DOIS = {doi for _, doi in EXPECTED_PAPERS}
-EXPECTED_TOOLS = {
-    "https://github.com/hermes-labs-ai/lintlang",
-    "https://github.com/hermes-labs-ai/little-canary",
-    "https://github.com/hermes-labs-ai/hermeneutic",
-    "https://github.com/hermes-labs-ai/agent-gorgon",
-    "https://github.com/hermes-labs-ai/fidelis",
-    "https://github.com/hermes-labs-ai/hermes-rubric",
-    "https://github.com/hermes-labs-ai/hermes-blind",
-    "https://github.com/hermes-labs-ai/agent-kickstart",
-    "https://github.com/hermes-labs-ai/zer0dex",
-}
-EXPECTED_PINNED_TOOLS = {
-    "https://github.com/hermes-labs-ai/lintlang": ("lintlang", "0.6.0"),
-    "https://github.com/hermes-labs-ai/hermeneutic": ("hermeneutic", "0.1.12"),
-    "https://github.com/hermes-labs-ai/fidelis": ("fidelis-memory", "0.1.0"),
-    "https://github.com/hermes-labs-ai/little-canary": ("little-canary", "0.3.7"),
-    "https://github.com/hermes-labs-ai/hermes-rubric": ("hermes-rubric", "1.2.3"),
-    "https://github.com/hermes-labs-ai/hermes-blind": ("hermes-blind", "0.3.0"),
-    "https://github.com/hermes-labs-ai/agent-kickstart": ("agent-kickstart", "0.3.0"),
-    "https://github.com/hermes-labs-ai/agent-gorgon": ("agent-gorgon", "0.3.0"),
-}
 DOI_PATTERN = re.compile(r"10\.5281/zenodo\.\d+")
 PAPER_LINK_PATTERN = re.compile(
     r"^- \*\*\[(?P<title>[^]]+)\]\(https://doi\.org/(?P<doi>10\.5281/zenodo\.\d+)\)\.\*\*",
@@ -92,29 +70,6 @@ def check_local(markdown: str) -> list[str]:
         if count != 1:
             errors.append(f"research DOI {doi} appears {count} times; expected once")
 
-    tool_urls = set(re.findall(r"https://github\.com/hermes-labs-ai/[a-z0-9-]+", tools))
-    if tool_urls != EXPECTED_TOOLS:
-        errors.append(
-            "open-source tool set differs: "
-            f"expected {sorted(EXPECTED_TOOLS)}, got {sorted(tool_urls)}"
-        )
-
-    for tool_url, (package, version) in EXPECTED_PINNED_TOOLS.items():
-        rows = [line for line in tools.splitlines() if f"]({tool_url})" in line]
-        expected_display = f"**{tool_url.rsplit('/', 1)[-1]} {version}**"
-        expected_install = f"`pip install {package}=={version}`"
-        if not rows:
-            errors.append(f"missing tool row for {tool_url}")
-            continue
-        if len(rows) != 1:
-            errors.append(f"{tool_url} appears {len(rows)} times; expected one row")
-            continue
-        row = rows[0]
-        if expected_display not in row:
-            errors.append(f"{tool_url} has stale or malformed displayed version; expected {version}")
-        if expected_install not in row:
-            errors.append(f"{tool_url} has stale or malformed install command; expected {package}=={version}")
-
     badge = "[![Research](https://img.shields.io/badge/research-six%20papers-1682D4)]"
     if f"{badge}({RESEARCH_URL})" not in markdown:
         errors.append("research badge does not describe and link to the six-paper index")
@@ -123,17 +78,6 @@ def check_local(markdown: str) -> list[str]:
     catalog_cta = f"**[Browse the open-source catalog]({CATALOG_URL})**"
     if catalog_cta not in front_matter:
         errors.append("front matter does not provide the canonical open-source catalog CTA")
-
-    bluesky_badge = "[![Bluesky](https://img.shields.io/badge/Bluesky-follow-0285FF?logo=bluesky&logoColor=white)]"
-    if f"{bluesky_badge}({BLUESKY_URL})" not in front_matter:
-        errors.append("front matter does not expose the canonical Hermes Labs Bluesky account")
-
-    core_catalog_copy = (
-        "The nine repositories below are the active public core"
-        ", each making one part of our approach inspectable and useful on its own."
-    )
-    if core_catalog_copy not in tools:
-        errors.append("tool section does not distinguish the nine-repository core from the full catalog")
 
     return errors
 
@@ -167,7 +111,7 @@ def pypi_latest_version(package: str, timeout: int = 15) -> str:
 
 
 def check_pypi_currentness(
-    pinned: dict[str, tuple[str, str]] = EXPECTED_PINNED_TOOLS,
+    pinned: dict[str, tuple[str, str]],
 ) -> tuple[list[str], list[str]]:
     """Compare each pinned package/version against the live PyPI release.
 
@@ -209,7 +153,7 @@ def main() -> int:
     parser.add_argument(
         "--check-pypi-currentness",
         action="store_true",
-        help="also compare pinned tool versions with the live PyPI registry",
+        help="also compare explicitly supplied pinned tool versions with the live PyPI registry",
     )
     args = parser.parse_args()
 
@@ -231,9 +175,7 @@ def main() -> int:
             errors.extend(compare_site_dois(live_dois))
 
     if args.check_pypi_currentness:
-        pypi_errors, pypi_warnings = check_pypi_currentness()
-        errors.extend(pypi_errors)
-        warnings.extend(pypi_warnings)
+        warnings.append("no pinned package versions are maintained in the organization profile")
 
     if errors:
         for error in errors:
