@@ -10,8 +10,9 @@ Hermes Labs provides engineering services to diagnose these failures and harden 
 [![Research](https://img.shields.io/badge/research-six%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
 [![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://hermeslabs.substack.com)
+[![Bluesky](https://img.shields.io/badge/Bluesky-follow-0285FF?logo=bluesky&logoColor=white)](https://bsky.app/profile/hermeslabsai.bsky.social)
 
-**[Try an agent-instruction check](https://hermes-labs.ai/lintlang)** · **[See the engineering evidence](https://hermes-labs.ai/proof)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
+**[Browse the open-source catalog](https://hermes-labs.ai/open-source)** · **[Try an agent-instruction check](https://hermes-labs.ai/lintlang)** · **[See the engineering evidence](https://hermes-labs.ai/proof)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
 
 ---
 
@@ -40,7 +41,7 @@ That is where systems can remain technically healthy while silently doing the wr
 
 ## Open-source reliability tools
 
-Start here. The active public core is nine repositories, each making one part of our approach inspectable and useful on its own. Hermes Labs engagements apply, integrate, and harden these methods in production systems. Per-tool evidence boundaries are documented on the [open-source catalog](https://hermes-labs.ai/open-source).
+Start with the [open-source catalog](https://hermes-labs.ai/open-source): the current map of the full public portfolio, each repository's status, and its evidence boundary. The nine repositories below are the active public core, each making one part of our approach inspectable and useful on its own. Hermes Labs engagements apply, integrate, and harden these methods in production systems.
 
 | Tool | Reliability role | Start |
 |---|---|---|

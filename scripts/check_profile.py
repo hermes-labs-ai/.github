@@ -15,6 +15,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 PROFILE = ROOT / "profile" / "README.md"
 RESEARCH_URL = "https://hermes-labs.ai/research"
+CATALOG_URL = "https://hermes-labs.ai/open-source"
+BLUESKY_URL = "https://bsky.app/profile/hermeslabsai.bsky.social"
 PYPI_URL_TEMPLATE = "https://pypi.org/pypi/{package}/json"
 
 EXPECTED_PAPERS = [
@@ -116,6 +118,22 @@ def check_local(markdown: str) -> list[str]:
     badge = "[![Research](https://img.shields.io/badge/research-six%20papers-1682D4)]"
     if f"{badge}({RESEARCH_URL})" not in markdown:
         errors.append("research badge does not describe and link to the six-paper index")
+
+    front_matter = markdown.split("## What we do", maxsplit=1)[0]
+    catalog_cta = f"**[Browse the open-source catalog]({CATALOG_URL})**"
+    if catalog_cta not in front_matter:
+        errors.append("front matter does not provide the canonical open-source catalog CTA")
+
+    bluesky_badge = "[![Bluesky](https://img.shields.io/badge/Bluesky-follow-0285FF?logo=bluesky&logoColor=white)]"
+    if f"{bluesky_badge}({BLUESKY_URL})" not in front_matter:
+        errors.append("front matter does not expose the canonical Hermes Labs Bluesky account")
+
+    core_catalog_copy = (
+        "The nine repositories below are the active public core"
+        ", each making one part of our approach inspectable and useful on its own."
+    )
+    if core_catalog_copy not in tools:
+        errors.append("tool section does not distinguish the nine-repository core from the full catalog")
 
     return errors
 
