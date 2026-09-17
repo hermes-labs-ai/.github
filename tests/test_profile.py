@@ -58,6 +58,28 @@ class ProfileTruthTests(unittest.TestCase):
         changed = self.profile.replace("hermes-rubric==1.2.3", "hermes-rubric==1.0.2", 1)
         self.assertTrue(check_local(changed))
 
+    def test_front_matter_keeps_canonical_catalog_and_bluesky_links(self) -> None:
+        changed = self.profile.replace(
+            "**[Browse the open-source catalog](https://hermes-labs.ai/open-source)**",
+            "Browse the tools",
+            1,
+        )
+        self.assertTrue(check_local(changed))
+        changed = self.profile.replace(
+            "https://bsky.app/profile/hermeslabsai.bsky.social",
+            "https://bsky.app/profile/not-hermes-labs",
+            1,
+        )
+        self.assertTrue(check_local(changed))
+
+    def test_tool_section_distinguishes_core_from_full_catalog(self) -> None:
+        changed = self.profile.replace(
+            "The nine repositories below are the active public core",
+            "The repositories below are the active public core",
+            1,
+        )
+        self.assertTrue(check_local(changed))
+
     def test_duplicate_tool_row_fails(self) -> None:
         row = next(
             line
