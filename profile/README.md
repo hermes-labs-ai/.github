@@ -42,9 +42,10 @@ That is where systems can remain technically healthy while silently doing the wr
 
 ## Open-source reliability tools
 
+Choose an installation route: [agent plugins](https://github.com/hermes-labs-ai/plugins) for Claude Code, Codex, or GitHub Copilot; [the shared Homebrew tap](https://github.com/hermes-labs-ai/homebrew-tap) for packaged command-line tools. Each catalog lists its available tools; product repositories retain their source, releases, and issue trackers.
+
 Four useful places to begin:
 
-- [Hermes Labs Plugins](https://github.com/hermes-labs-ai/plugins) — install the reviewed catalog through native Claude Code, Codex, or GitHub Copilot marketplace manifests generated from one pinned source of truth.
 - [LintLang](https://github.com/hermes-labs-ai/lintlang) — statically check agent instructions, configuration, and tool descriptions before they ship.
 - [zer0dex](https://github.com/hermes-labs-ai/zer0dex) — explore a readable local memory index alongside vector retrieval.
 - [Little Canary](https://github.com/hermes-labs-ai/little-canary) — probe untrusted input for prompt-injection risk before it reaches the primary workflow.
