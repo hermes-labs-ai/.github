@@ -8,8 +8,7 @@ aligned with their public sources.
 
 - **Org profile (the public landing page):** [`profile/README.md`](./profile/README.md)
 - **Phone cloud work menu:** [`CLOUD.md`](./CLOUD.md)
-- **Hermes Labs** is an AI reliability engineering studio for product and engineering teams
-  shipping production agents and LLM applications.
+- Hermes Labs is an agentic infrastructure company building the reliability layer for autonomous systems.
 
 Edit `profile/README.md` to change what visitors see on the organization page.
 
@@ -20,6 +19,7 @@ version of the file.
 
 - [`SECURITY.md`](./SECURITY.md) — how to report a vulnerability privately
 - [`CONTRIBUTING.md`](./CONTRIBUTING.md) — contribution expectations
+- [`README-ORIENTATION.md`](./README-ORIENTATION.md) — canonical product README orientation and company attribution
 - [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md) — Contributor Covenant 2.1
 - [`SUPPORT.md`](./SUPPORT.md) — where questions, bugs, and commercial requests go
 - [`.github/ISSUE_TEMPLATE/`](./.github/ISSUE_TEMPLATE) — bug and feature forms
