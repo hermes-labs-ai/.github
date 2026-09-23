@@ -20,7 +20,8 @@ overrides this file.
 - Add or update tests for behavior you change.
 - Run the repository's existing test and lint commands before pushing. Most Python repositories
   use `pytest` and `ruff`; most JavaScript repositories use their `package.json` scripts.
-- Update the README only when your change alters documented behavior.
+- Update the README when your change alters documented behavior; for product orientation or
+  company attribution, follow the [README orientation standard](README-ORIENTATION.md).
 
 ## Pull request expectations
 

@@ -1,25 +1,29 @@
-# Hermes Labs
+<div align="center">
 
-**AI reliability engineering for product and engineering teams shipping production agents and LLM applications.**
+<h1>Hermes Labs</h1>
+
+Hermes Labs is an agentic infrastructure company building the reliability layer for autonomous systems.
 
 **Make agent behavior easier to inspect, test, control, and explain.**
-
-These systems can pass conventional evaluations and still fail silently in production. Instructions get dropped. Tools report success they did not achieve. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
-
-Hermes Labs provides engineering services to diagnose these failures and harden the operational layers where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
 
 [![Site](https://img.shields.io/badge/hermes--labs.ai-visit-4F46E5)](https://hermes-labs.ai)
 [![Research](https://img.shields.io/badge/research-six%20papers-1682D4)](https://hermes-labs.ai/research)
 [![Open source](https://img.shields.io/badge/open%20source-catalog-0F766E)](https://hermes-labs.ai/open-source)
 [![Writing](https://img.shields.io/badge/writing-Substack-FF6719?logo=substack&logoColor=white)](https://hermeslabs.substack.com)
 
+</div>
+
 **[Browse the open-source catalog](https://hermes-labs.ai/open-source)** · **[Try LintLang](https://hermes-labs.ai/lintlang)** · **[See engineering evidence](https://hermes-labs.ai/proof)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
+
+These systems can pass conventional evaluations and still fail silently in production. Instructions get dropped. Tools report success they did not achieve. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
+
+Hermes Labs provides engineering services to diagnose these failures and harden the operational layers where they occur: prompts, tool interfaces, retrieval, memory, policies, runtime controls, and evidence.
 
 ---
 
 ## What we do
 
-Hermes Labs is an AI reliability engineering studio for product and engineering teams shipping agents and LLM applications whose behavior must remain dependable, inspectable, and reconstructable under real use.
+We build reliability infrastructure for agents and LLM applications whose behavior must remain dependable, inspectable, and reconstructable under real use.
 
 - **Diagnose.** We review prompts, tools, scaffolds, configurations, memory, retrieval, and traces; run controlled adversarial probes; and deliver prioritized findings with reproducible failure cases and concrete fixes.
 - **Harden.** We design and integrate runtime controls, anti-fabrication safeguards, context-integrity protections, policy gates, and offline-verifiable evidence inside the stack you already operate.
