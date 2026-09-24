@@ -7,7 +7,6 @@ defaults for the organization, and the checks that keep its open-source tool and
 aligned with their public sources.
 
 - **Org profile (the public landing page):** [`profile/README.md`](./profile/README.md)
-- **Phone cloud work menu:** [`CLOUD.md`](./CLOUD.md)
 - Hermes Labs is an agentic infrastructure company building the reliability layer for autonomous systems.
 
 Edit `profile/README.md` to change what visitors see on the organization page.
