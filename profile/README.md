@@ -105,4 +105,6 @@ Public does not automatically mean flagship or production-ready. Browse the [ful
 
 ---
 
+Support the public work — [GitHub Sponsors](https://github.com/sponsors/hermes-labs-ai) helps fund Hermes Labs’ open-source tools, evaluations, upstream fixes, migrations, and maintenance.
+
 *Hermes Labs was founded by Roli Bosch ([Rolando Bosch](https://www.linkedin.com/in/rolibosch/) in professional and academic work). [roli@hermes-labs.ai](mailto:roli@hermes-labs.ai) · [hermes-labs.ai](https://hermes-labs.ai)*
