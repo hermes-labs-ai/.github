@@ -36,6 +36,17 @@ class ProfileTruthTests(unittest.TestCase):
         )
         self.assertTrue(check_local(changed))
 
+    def test_front_matter_requires_what_we_do_heading(self) -> None:
+        for replacement in ("", "## Our work"):
+            with self.subTest(replacement=replacement):
+                changed = self.profile.replace("## What we do", replacement, 1)
+                self.assertIn("missing section: What we do", check_local(changed))
+
+    def test_catalog_link_after_boundary_fails(self) -> None:
+        cta = "**[Browse the open-source catalog](https://hermes-labs.ai/open-source)**"
+        changed = self.profile.replace(cta, "", 1).replace("## What we do", "## What we do\n\n" + cta, 1)
+        self.assertIn("front matter does not provide the canonical open-source catalog CTA", check_local(changed))
+
     def test_front_matter_keeps_canonical_catalog_link(self) -> None:
         changed = self.profile.replace(
             "**[Browse the open-source catalog](https://hermes-labs.ai/open-source)**",

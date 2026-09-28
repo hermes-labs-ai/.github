@@ -74,7 +74,11 @@ def check_local(markdown: str) -> list[str]:
     if f"{badge}({RESEARCH_URL})" not in markdown:
         errors.append("research badge does not describe and link to the six-paper index")
 
-    front_matter = markdown.split("## What we do", maxsplit=1)[0]
+    boundary = re.search(r"^## What we do\s*$", markdown, re.MULTILINE)
+    if boundary is None:
+        errors.append("missing section: What we do")
+        return errors
+    front_matter = markdown[:boundary.start()]
     catalog_cta = f"**[Browse the open-source catalog]({CATALOG_URL})**"
     if catalog_cta not in front_matter:
         errors.append("front matter does not provide the canonical open-source catalog CTA")
