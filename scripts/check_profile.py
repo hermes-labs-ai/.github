@@ -51,6 +51,19 @@ def section(markdown: str, heading: str) -> str:
     return match.group("body")
 
 
+MACHINE_DISCOVERY_URLS = (
+    "https://hermes-labs.ai/llms.txt",
+    "https://hermes-labs.ai/software-catalog.json",
+    "https://hermes-labs.ai/contributions.json",
+)
+# A bare hard count of upstream work ("48 merged ...") goes stale; the profile links the
+# dated canonical ledger instead of restating a number.
+UNDATED_COUNT_PATTERN = re.compile(
+    r"\b\d{2,}\+?\s+(?:merged|upstream|external|accepted)\b(?![^.\n]{0,80}\b(?:as of|census|20\d\d))",
+    re.IGNORECASE,
+)
+
+
 def check_local(markdown: str) -> list[str]:
     errors: list[str] = []
     try:
@@ -82,6 +95,15 @@ def check_local(markdown: str) -> list[str]:
     catalog_cta = f"**[Browse the open-source catalog]({CATALOG_URL})**"
     if catalog_cta not in front_matter:
         errors.append("front matter does not provide the canonical open-source catalog CTA")
+
+    for url in MACHINE_DISCOVERY_URLS:
+        if url not in markdown:
+            errors.append(f"profile does not route to machine discovery surface {url}")
+
+    for match in UNDATED_COUNT_PATTERN.finditer(markdown):
+        errors.append(
+            f"mutable count {match.group(0)!r} must be generated or dated; link the canonical ledger instead"
+        )
 
     return errors
 

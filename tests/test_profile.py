@@ -55,6 +55,16 @@ class ProfileTruthTests(unittest.TestCase):
         )
         self.assertTrue(check_local(changed))
 
+    def test_machine_discovery_routes_are_required(self) -> None:
+        changed = self.profile.replace("https://hermes-labs.ai/software-catalog.json", "https://example.com/x", 1)
+        self.assertTrue(any("machine discovery" in error for error in check_local(changed)))
+
+    def test_undated_hard_merge_count_fails(self) -> None:
+        for claim in ("48 merged upstream contributions", "54 upstream merges"):
+            with self.subTest(claim=claim):
+                self.assertTrue(check_local(self.profile + "\n" + claim + "\n"))
+        self.assertEqual(check_local(self.profile + "\n57 merged in the 29 September 2026 census\n"), [])
+
     def test_live_index_allows_additional_version_dois(self) -> None:
         self.assertEqual(compare_site_dois(EXPECTED_DOIS | {"10.5281/zenodo.99999999"}), [])
 

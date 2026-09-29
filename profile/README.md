@@ -74,6 +74,8 @@ Read the [research index](https://hermes-labs.ai/research) for abstracts, hosted
 
 Machine-readable publication record: [JSON](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.json) · [JSON-LD](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/publications.jsonld) · [BibTeX](https://raw.githubusercontent.com/hermes-labs-ai/hermes-publications/main/CITATION.bib).
 
+Machine discovery for agents: [llms.txt](https://hermes-labs.ai/llms.txt) · [full context](https://hermes-labs.ai/llms-full.txt) · [software catalog JSON](https://hermes-labs.ai/software-catalog.json) · [contribution ledger JSON](https://hermes-labs.ai/contributions.json).
+
 ---
 
 ## Upstream engineering
