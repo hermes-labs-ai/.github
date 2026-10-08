@@ -95,7 +95,7 @@ Merged AI/framework fixes contributed by Roli Bosch (roli-lpci), founder of Herm
 Typing modernization in PyTorch Ignite and Optuna, compatibility work and dependency maintenance remain credited in their own classes. Community-list and research-index submissions do not count as merged code contributions.
 <!-- hermes-contributions:end -->
 
-This work may be executed through human-directed autonomous engineering infrastructure. [Rolando Bosch](https://github.com/roli-lpci) is the responsible human contributor and authorizes publication from his GitHub account.
+This work may be executed through human-directed autonomous engineering infrastructure. [Rolando Bosch](https://github.com/roli-lpci) is the responsible human contributor.
 
 ---
 
@@ -103,7 +103,7 @@ This work may be executed through human-directed autonomous engineering infrastr
 
 We keep additional reference implementations and research concepts public so others can inspect, test, fork, and develop them.
 
-Public does not automatically mean flagship or production-ready. Browse the [full GitHub catalog](https://github.com/hermes-labs-ai) and each repository's own status, installation instructions, and limitations.
+Public does not automatically mean flagship or production-ready. Browse the [full GitHub catalog](https://github.com/orgs/hermes-labs-ai/repositories) and each repository's own status, installation instructions, and limitations.
 
 ---
 
