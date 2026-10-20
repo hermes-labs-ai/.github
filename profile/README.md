@@ -13,7 +13,7 @@ Hermes Labs is an agentic infrastructure company building the reliability layer 
 
 </div>
 
-**[Browse the open-source catalog](https://hermes-labs.ai/open-source)** · **[Try LintLang](https://hermes-labs.ai/lintlang)** · **[See engineering evidence](https://hermes-labs.ai/proof)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
+**[Browse the open-source catalog](https://hermes-labs.ai/open-source)** · **[Try LintLang](https://hermes-labs.ai/lintlang)** · **[See contributions & integrations](https://hermes-labs.ai/open-source/contributions)** · **[Get help with a production failure](https://hermes-labs.ai/services)**
 
 These systems can pass conventional evaluations and still fail silently in production. Instructions get dropped. Tools report success they did not achieve. Retrieved context changes meaning. Memory drifts. Policies weaken across long workflows. Evidence no longer explains why an action happened.
 
@@ -78,21 +78,30 @@ Machine discovery for agents: [llms.txt](https://hermes-labs.ai/llms.txt) · [fu
 
 ---
 
-## Upstream engineering
+## Contributions beyond Hermes Labs
 
 <!-- hermes-contributions:start -->
-The [canonical external contribution record](https://hermes-labs.ai/open-source/contributions) reports current, dated totals and separates merged engineering work, submitted fixes, integrations, documentation, ecosystem listings and research-index submissions. [Structured ledger](https://hermes-labs.ai/contributions.json).
+**71 Upstream Contributions** · **8 Integrations & Adoption outcomes** (as of 2026-10-20).
 
-Merged AI/framework fixes contributed by Roli Bosch (roli-lpci), founder of Hermes Labs:
+### Upstream Contributions
+
+Engineering and technical documentation accepted by external projects, plus reports that led to implemented upstream fixes.
 
 - [microsoft/semantic-kernel #13610](https://github.com/microsoft/semantic-kernel/pull/13610) — Preserve the first system/developer message during Python chat-history truncation and handle the target_count=1 boundary. [Case study](https://hermes-labs.ai/case-studies/fixing-semantic-kernel-deleted-system-prompts).
 - [langchain-ai/langchain #35544](https://github.com/langchain-ai/langchain/pull/35544) — Drop forced tool_choice with a warning when Anthropic extended thinking is enabled; preserve auto and unaffected requests. [Case study](https://hermes-labs.ai/case-studies/fixing-langchain-thinking-tools-crash).
 - [microsoft/semantic-kernel #13635](https://github.com/microsoft/semantic-kernel/pull/13635) — Use value equality to avoid duplicate null entries in strict JSON Schema type arrays, with three regression tests. [Case study](https://hermes-labs.ai/case-studies/fixing-semantic-kernel-duplicate-null-schema).
 - [stanfordnlp/dspy #9978](https://github.com/stanfordnlp/dspy/pull/9978) — Reject an empty Evaluate devset with a descriptive ValueError before metric-summary division, with a regression test. [Case study](https://hermes-labs.ai/case-studies/fixing-dspy-empty-devset).
 
-[Mem0 #5250](https://github.com/mem0ai/mem0/pull/5250) contributed a Redis cosine-distance-to-similarity patch with regression coverage. It closed without merge after a maintainer acknowledged the conversion in a broader sweep. The [case study](https://hermes-labs.ai/case-studies/auditing-mem0-retrieval-scoring) preserves earlier community provenance and the patch’s missing clamp. Other substantive unmerged fixes remain visible in the ledger.
+### Integrations & Adoption
 
-Typing modernization in PyTorch Ignite and Optuna, compatibility work and dependency maintenance remain credited in their own classes. Community-list and research-index submissions do not count as merged code contributions.
+Working integrations accepted upstream, and independent developers building on our tools and ideas.
+
+- **Promptfoo:** [Hermeneutic wording assertion](https://github.com/promptfoo/promptfoo/pull/10663) and [LintLang prompt-linting recipe](https://github.com/promptfoo/promptfoo/pull/11294).
+- **LintLang in other workflows:** [Character.AI Larch CI](https://github.com/character-ai/larch/blob/ef7ee4b7f946f29fa51981f5422a1a93e83c79a7/.github/workflows/requirements-agent-linters.txt) and [independent Gentoo Haven packaging](https://github.com/thehaven/haven-overlay/tree/fbed4463d4e213a3bce98babbfc72ef78722d255/dev-util/lintlang).
+- **Little Canary in other projects:** [Orbit's agent adapter](https://github.com/samvitgersappa/Orbit/pull/1) and [Preflight's independently adapted inspection techniques](https://github.com/DavidMChan/preflight/commit/186ce43c1ce122aba82c1904e777517834d1bc90).
+- **zer0dex-inspired memory architecture:** independent implementations in [AllSource](https://github.com/all-source-os/all-source/blob/5d5cd154a165ee3bc1c1d95c47559f0be22ccf78/apps/web/content/from-zerodex-to-allsource.mdx) and [Mnemosyne](https://github.com/oveku/mnemosyne/pull/3).
+
+[Full record and attribution](https://hermes-labs.ai/open-source/contributions) · [Structured ledger](https://hermes-labs.ai/contributions.json) · Verified 2026-10-20. Listings and pending submissions are excluded from these totals.
 <!-- hermes-contributions:end -->
 
 This work may be executed through human-directed autonomous engineering infrastructure. [Rolando Bosch](https://github.com/roli-lpci) is the responsible human contributor.
