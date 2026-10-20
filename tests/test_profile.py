@@ -30,8 +30,8 @@ class ProfileTruthTests(unittest.TestCase):
 
     def test_hidden_duplicate_doi_fails(self) -> None:
         changed = self.profile.replace(
-            "## Upstream engineering",
-            "<!-- 10.5281/zenodo.21659634 -->\n\n## Upstream engineering",
+            "## Contributions beyond Hermes Labs",
+            "<!-- 10.5281/zenodo.21659634 -->\n\n## Contributions beyond Hermes Labs",
             1,
         )
         self.assertTrue(check_local(changed))
